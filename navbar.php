@@ -20,7 +20,7 @@
                 <a href="guide.php" class="nav-link <?php echo ($active_page == 'guide.php') ? 'active' : ''; ?>">Guide</a>
             </li>
             <li class="nav-item">
-                <a href="contact-us.php" class="nav-link <?php echo ($active_page == 'contact-us.php') ? 'active' : ''; ?>">Contact Us</a>
+                <a href="#contact_us" class="nav-link <?php echo ($active_page == 'contact-us.php') ? 'active' : ''; ?>">Contact Us</a>
             </li>
         </ul>
         <div class="hamburger">

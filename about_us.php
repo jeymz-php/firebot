@@ -233,7 +233,7 @@
   </div>
 </section>
 
-<footer class="footer">
+<footer id="contact_us" class="footer">
   <div class="footer-nav">
     <a href="#">Home</a>
     <a href="#">About Us</a>
