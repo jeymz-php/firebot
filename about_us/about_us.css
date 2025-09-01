@@ -1,0 +1,731 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  flex: 1; /* yung laman ng page, para itulak pababa ang footer */
+}
+
+.footer {
+  margin-top: auto; /* para laging nasa pinakababa */
+}
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+    text-align: justify; /* lahat ng text justified */
+    overflow-x: hidden;
+      display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* First About Us Section */
+.about-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background: #000 url("images/kami.png") center/cover no-repeat; /* black fallback */
+  filter: brightness(0.5); /* no blur here to avoid white edges */
+  z-index: 0;
+  will-change: transform;
+  overflow: hidden;
+}
+
+/* extra layers for shuffle effect */
+.parallax-bg::before,
+.parallax-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: shuffle 6s infinite;
+  filter: brightness(0.5);
+  backdrop-filter: blur(4px); /* apply blur only as overlay */
+}
+
+/* 2nd image */
+.parallax-bg::before {
+  background-image: url("images/11.png");
+  animation-delay: 2s;
+}
+
+/* 3rd image */
+.parallax-bg::after {
+  background-image: url("images/1.png");
+  animation-delay: 4s;
+}
+
+/* Super quick fade in/out */
+@keyframes shuffle {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  40%  { opacity: 1; }
+  60%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+
+.about-section h1{
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+.about-section p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  opacity: 1;               /* default visible */
+  transform: none;          /* no hiding */
+}
+
+.about-section h1,
+.about-section p {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* kapag visible */
+.about-section h1.show,
+.about-section p.show {
+  animation: fadeSlide 0.8s ease-out forwards;
+}
+
+/* keyframes */
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* Who We Are Section */
+#who-we-are {
+    background-color: #1D1616;
+    color: #fff;
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    margin: 10rem auto;
+    max-width: 1100px;
+}
+
+#who-we-are .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+#who-we-are h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+#who-we-are p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+}
+
+#who-we-are .text {
+    flex: 1 1 60%;
+}
+
+#who-we-are .slider {
+    flex: 1 1 35%;
+    position: relative; /* keep buttons positioned correctly */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#who-we-are .slides {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* control width */
+    height: auto;     /* auto height from image */
+}
+
+#who-we-are .about-img {
+    display: none;
+    width: 100%;     /* responsive */
+    height: auto;    /* depends on image */
+    border-radius: 15px;
+    object-fit: contain;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+#who-we-are .about-img.active {
+    display: block;
+}
+
+/* Navigation Buttons */
+#who-we-are .prev,
+#who-we-are .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    z-index: 10;
+    transition: all 0.3s ease; /* smooth animation */
+}
+
+#who-we-are .prev { left: 10px; }
+#who-we-are .next { right: 10px; }
+
+/* hover effect */
+#who-we-are .prev:hover,
+#who-we-are .next:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #8E1616; 
+    transform: translateY(-50%) scale(1.2); /* zoom in konti */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* dagdag depth */
+}
+
+/* kapag clinick, may konting "click" effect */
+#who-we-are .prev:active,
+#who-we-are .next:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+/* hidden state */
+#who-we-are {
+  opacity: 0;
+  transform: scale(0.8) translateY(80px) rotate(-3deg);
+  transition: all 0.3s ease-out;
+}
+
+/* visible state (cartoony bounce) */
+#who-we-are.show {
+  opacity: 1;
+  transform: none;
+  animation: cartoonyBounce 1s cubic-bezier(.68,-0.55,.27,1.55); 
+}
+
+/* cartoony bounce animation */
+@keyframes cartoonyBounce {
+  0% {
+    transform: scale(0.8) translateY(80px) rotate(-5deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05) translateY(-15px) rotate(2deg); 
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.95) translateY(5px) rotate(-1deg);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotate(0);
+  }
+}
+
+
+/* Mission Section */
+#mission {
+  padding: 4rem 2rem;
+  text-align: center;
+  margin-top:   -80px;
+}
+
+#mission h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1D1616;
+}
+
+#mission > p {
+  max-width: 900px;
+  margin: 0 auto 3rem auto;
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Grid Layout - 2 columns */
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem; /* adjust mo ito (e.g., 1rem, 1.5rem) */
+  max-width: 890px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+/* Mission Card */
+.mission-card {
+  position: relative;
+  border: 5px solid #8E1616;
+  border-radius: 12px;
+  padding: 3rem 2rem 2rem 5rem; /* dagdag top + left space for icon */
+  text-align: left;
+  max-width: 400px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Icon sa upper-left - putol yung border */
+.icon-box {
+  position: absolute;
+  top: -20px;   /* itinaas */
+  left: -35px;  /* lumabas sa gilid */
+  background: #fff;  /* para takpan yung border sa likod */
+  padding: 3.5rem; /* dati siguro 1rem lang, dagdagan mo */
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-box img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+}
+
+/* Text */
+.mission-card p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.mission-card span {
+  color: #8E1616;
+  font-weight: 600;
+}
+
+/* Responsive - 1 column pag maliit screen */
+@media (max-width: 768px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+  }
+  .mission-card {
+    padding: 4rem 2rem 2rem; /* balik sa taas center pag mobile */
+    text-align: center;
+  }
+  .icon-box {
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+
+
+/* Our Vision Section */
+#vision {
+  background: #1D1616   ;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  border-radius: 200px;
+  max-width: 1000px;
+  margin: 2rem auto;
+    margin-top:   80px;
+
+  
+}
+
+#vision h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+#vision p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: #ddd;
+}
+
+/* Our Values Section */
+.our-values {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  align-items: flex-start;
+  margin: 5rem auto;
+  max-width: 1100px;
+  padding: 0 1rem;
+  color: #1D1616;
+  margin-top:  130px;
+;
+
+}
+
+.values-left {
+  flex: 1;
+  max-width: 55%;
+}
+
+/* Heading with red line to the right */
+.values-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding-right: 1rem;
+}
+
+.values-heading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  height: 3px;
+  background-color: #8E1616;
+  padding: 2px; 
+  width: calc(100vw - 100%); /* sakto hanggang dulo ng screen */}
+
+.values-left p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* Right side - Accordion */
+.values-right {
+  flex: 1;
+  max-width: 40%;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #000;
+  padding: 0.7rem 0;
+  margin: 5rem;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.accordion-item.active .accordion-body {
+  max-height: 1000px; /* malaking value para siguradong kasya */
+  opacity: 1;
+}
+
+
+
+.accordion-header .icon {
+  font-size: 1.1rem;
+}
+
+/* Our Partners Section */
+.partners-section {
+  text-align: center;
+  margin: 3rem 0;
+  margin-top:  10px;
+}
+
+.partners-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1D1616; /* dark text for contrast */
+  padding-bottom: 0.5rem;
+}
+
+.partners-slider {
+  width: 100%;
+  overflow: hidden;
+  border-top: 5px solid #1D1616;
+  border-bottom: 5px solid #1D1616;
+  background-color: #8E1616;
+  padding: 2.5rem 0;
+}
+
+.partners-track {
+  display: flex;
+  gap: 2rem;
+  animation: scroll 15s linear infinite;
+}
+
+.partner-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.partner-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.partner-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: stretch;
+}
+
+/* Keyframes: dire-diretso lang */
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ✅ Pause on hover */
+.partners-slider:hover .partners-track {
+  animation-play-state: paused;
+}
+
+/* Meet Our Team Section */
+.our-team {
+  max-width: 1200px;
+  margin: 5rem auto;
+  padding: 0 1rem;
+  margin-top: 110px;
+}
+
+.team-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* text at lines nasa gitna */
+  gap: 1rem; /* space sa pagitan ng line at text */
+  margin: 2rem 0;
+  color: #1D1616; 
+}
+
+.team-heading::before,
+.team-heading::after {
+  content: "";
+  flex: 1;
+  height: 3px;
+  padding: 2px;
+  background-color: #8E1616;
+}
+
+
+/* Team grid - fixed 8 cards (4x2 layout) */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  justify-items: center;
+}
+
+/* Team card */
+.team-card {
+  background: #fff;
+  border: 5px solid #1D1616;
+  border-radius: 12px;
+  text-align: center;
+  padding: 2rem 1rem;
+  width: 180px;
+}
+
+.team-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 5px solid #8E1616;
+  margin: 0 auto 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.team-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: stretch;
+}
+
+.team-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.team-card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Footer Styles */
+.footer {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 5rem 1rem;
+  margin-top: 100px;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative; /* para gumana yung ::after */
+  transition: color 0.3s ease;
+}
+
+/* underline animation sa footer nav */
+.footer-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* konting space sa ilalim ng text */
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #8E1616;
+}
+
+.footer-nav a:hover::after {
+  width: 100%;
+}
+
+/* optional: active state */
+.footer-nav a.active::after {
+  width: 100%;
+}
+
+
+.footer-logo {
+  height: 40px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer; /* kamay na cursor kapag hover */
+}
+
+.footer-logo:hover {
+   content: url("images/logo.png"); /* palit image pag hover */
+}
+
+.footer-divider {
+  border: none;
+  border-top: 1px solid #666;
+  margin: 1.5rem auto;
+  width: 80%;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-social a {
+  color: #fff;
+  font-size: 1.2rem;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  text-decoration: none; /* tanggal underline */
+}
+
+
+.footer-social a:hover {
+  background: #8E1616;
+  border-color: #8E1616;
+}
+
+.footer-bottom {
+  font-size: 0.8rem;
+  color: #aaa;
+}
