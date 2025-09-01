@@ -84,7 +84,7 @@ body {
 
 /* 2nd image */
 .parallax-bg::before {
-  background-image: url("images/kami");
+  background-image: url("images/11.png");
   animation-delay: 2s;
 }
 
