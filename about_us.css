@@ -142,6 +142,7 @@ body {
 
 
 
+
 /* Who We Are Section */
 #who-we-are {
     background-color: #1D1616;
@@ -179,18 +180,28 @@ body {
 
 #who-we-are .slider {
     flex: 1 1 35%;
-    position: relative; /* keep buttons positioned correctly */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
 }
 
 #who-we-are .slides {
     position: relative;
     width: 100%;
-    max-width: 500px; /* control width */
-    height: auto;     /* auto height from image */
+    max-width: 500px;
+    height: auto;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Hover zoom effect */
+#who-we-are .slider:hover .slides {
+    transform: scale(1.05);
+    opacity: 0.95;
+    cursor: pointer;
 }
 
 #who-we-are .about-img {
@@ -273,6 +284,57 @@ body {
   }
 }
 
+/* ========================= */
+/* 📱 Mobile Responsive for Who We Are Section */
+/* ========================= */
+@media (max-width: 768px) {
+  #who-we-are {
+    margin: 5rem auto;       /* smaller margin for mobile */
+    padding: 2rem 1rem;
+    max-width: 95%;          /* fit within smaller screens */
+  }
+
+  #who-we-are .container {
+    flex-direction: column;  /* stack text and slider */
+    text-align: center;
+  }
+
+  #who-we-are .text {
+    flex: 1 1 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  #who-we-are .slider {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  #who-we-are h2 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  #who-we-are p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  #who-we-are h2 {
+    font-size: 1.6rem;
+  }
+
+  #who-we-are p {
+    font-size: 0.9rem;
+  }
+
+  #who-we-are .prev,
+  #who-we-are .next {
+    padding: 8px 12px;
+    font-size: 1rem;  /* smaller nav buttons */
+  }
+}
 
 /* Mission Section */
 #mission {
@@ -351,6 +413,88 @@ body {
   font-weight: 600;
 }
 
+/* ---------------------------
+   Mission & reveal (scoped)
+   --------------------------- */
+
+/* Hidden state for revealable text (only scope to #mission & .our-values) */
+#mission .hidden,
+.our-values .hidden {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Scroll in from left (scrolling down) */
+#mission .fade-left.show,
+.our-values .fade-left.show {
+  animation: fadeSlideLeft 0.8s ease-out forwards;
+}
+
+/* Scroll in from right (scrolling up) */
+#mission .fade-right.show,
+.our-values .fade-right.show {
+  animation: fadeSlideRight 0.8s ease-out forwards;
+}
+
+/* ---------------------------
+   Mission cards bounce
+   --------------------------- */
+/* This is the rule that triggers the cartoony bounce — add it back! */
+.mission-card.show {
+  animation: cartoonyBounce 1s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+/* Hover still works */
+.mission-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ---------------------------
+   Keyframes
+   --------------------------- */
+@keyframes fadeSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cartoonyBounce {
+  0% {
+    transform: scale(0.8) translateY(80px) rotate(-5deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05) translateY(-15px) rotate(2deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.95) translateY(5px) rotate(-1deg);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotate(0);
+  }
+}
+
+
 /* Responsive - 1 column pag maliit screen */
 @media (max-width: 768px) {
   .mission-grid {
@@ -364,6 +508,77 @@ body {
     top: -45px;
     left: 50%;
     transform: translateX(-50%);
+  }
+}
+
+/* ========================= */
+/* 📱 Mobile Responsive for Mission Section */
+/* ========================= */
+@media (max-width: 768px) {
+  #mission {
+    padding: 3rem 1.5rem;
+    margin-top: -40px; /* bawasan ng konti gap sa taas */
+  }
+
+  #mission h2 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  #mission > p {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .mission-grid {
+    grid-template-columns: 1fr; /* 1 column layout */
+    gap: 1.5rem;
+  }
+
+  .mission-card {
+    max-width: 100%;
+    padding: 4rem 1.5rem 2rem; /* balance spacing for mobile */
+  }
+
+  .icon-box {
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    padding: 2.5rem;
+  }
+
+  .icon-box img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  #mission h2 {
+    font-size: 1.6rem;
+  }
+
+  #mission > p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .mission-card p {
+    font-size: 0.9rem;
+  }
+
+  .icon-box {
+    width: 60px;
+    height: 60px;
+    padding: 2rem;
+    top: -35px;
+  }
+
+  .icon-box img {
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -395,6 +610,74 @@ body {
   margin: 0 auto;
   line-height: 1.8;
   color: #ddd;
+}
+
+/* Default hidden state */
+#vision {
+  opacity: 0;
+  transform: scale(0.9) translateY(50px) rotate(-3deg);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Show state (applies cartoony bounce) */
+#vision.show {
+  opacity: 1;
+  transform: none;
+  animation: cartoonyBounce 1s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+/* Cartoony bounce keyframes */
+@keyframes cartoonyBounce {
+  0% {
+    transform: scale(0.8) translateY(80px) rotate(-5deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05) translateY(-15px) rotate(2deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.95) translateY(5px) rotate(-1deg);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotate(0);
+  }
+}
+
+/* Mobile Responsive - Our Vision Section */
+@media (max-width: 768px) {
+  #vision {
+    padding: 1.2rem 1.5rem;
+    border-radius: 50px; /* reduce circle radius for smaller screens */
+    margin: 1.5rem;
+  }
+
+  #vision h2 {
+    font-size: 1.8rem;
+  }
+
+  #vision p {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #vision {
+    padding: 1rem;
+    border-radius: 30px;
+    margin: 1rem;
+  }
+
+  #vision h2 {
+    font-size: 1.5rem;
+  }
+
+  #vision p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
 }
 
 /* Our Values Section */
@@ -487,6 +770,132 @@ body {
   font-size: 1.1rem;
 }
 
+/* Default visible (Our Values only) */
+.our-values .values-left h2,
+.our-values .values-left p,
+.our-values .accordion-item {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hidden state (before animation) */
+.our-values .hidden {
+  opacity: 0;
+  transform: translateX(30px); /* horizontal offset */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Scroll down animation (slide from left) */
+.our-values .fade-left.show {
+  animation: fadeSlideLeft 0.6s ease-out forwards;
+}
+
+/* Scroll up animation (slide from right) */
+.our-values .fade-right.show {
+  animation: fadeSlideRight 0.6s ease-out forwards;
+}
+
+/* Keyframes */
+@keyframes fadeSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px); /* galing kaliwa */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px); /* galing kanan */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Mobile responsiveness for Our Values Section */
+@media (max-width: 1024px) {
+  .our-values {
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 80px;
+  }
+
+  .values-left,
+  .values-right {
+    max-width: 100%;
+  }
+
+  .values-heading {
+    font-size: 2rem;
+    padding-right: 0.5rem;
+  }
+
+  .values-heading::after {
+    width: 50px; /* shorter line for smaller screens */
+  }
+
+  .values-left p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .accordion-item {
+    margin: 2rem 0; /* reduce spacing on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .values-heading {
+    font-size: 1.8rem;
+  }
+
+  .values-heading::after {
+    width: 40px;
+  }
+
+  .values-left p {
+    font-size: 0.9rem;
+  }
+
+  .accordion-header {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .our-values {
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+
+  .values-heading {
+    font-size: 1.6rem;
+  }
+
+  .values-heading::after {
+    width: 30px;
+  }
+
+  .values-left p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .accordion-header {
+    font-size: 0.9rem;
+  }
+
+  .accordion-item {
+    margin: 1.5rem 0;
+  }
+}
+
 /* Our Partners Section */
 .partners-section {
   text-align: center;
@@ -552,6 +961,73 @@ body {
 /* ✅ Pause on hover */
 .partners-slider:hover .partners-track {
   animation-play-state: paused;
+}
+
+/* Default hidden state */
+.partners-section.hidden {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Scroll down (fade in from left) */
+.partners-section.fade-left.show {
+  animation: fadeSlideLeft 0.8s ease-out forwards;
+}
+
+/* Scroll up (fade in from right) */
+.partners-section.fade-right.show {
+  animation: fadeSlideRight 0.8s ease-out forwards;
+}
+
+/* 📱 Mobile Responsive - Our Partners Section */
+@media (max-width: 768px) {
+  .partners-section h2 {
+    font-size: 2rem;
+  }
+
+  .partners-slider {
+    padding: 2rem 0;
+  }
+
+  .partners-track {
+    gap: 1.5rem;
+  }
+
+  .partner-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .partner-item {
+    font-size: 0.95rem;
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .partners-slider {
+    padding: 1.5rem 0;
+  }
+
+  .partners-track {
+    gap: 1rem;
+  }
+
+  .partner-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .partner-item {
+    font-size: 0.85rem;
+    gap: 0.3rem;
+  }
 }
 
 /* Meet Our Team Section */
@@ -630,6 +1106,120 @@ body {
   color: #555;
 }
 
+/* Hidden state for heading and cards */
+.our-team .hidden {
+  opacity: 0;
+  transform: translateX(30px); /* horizontal slide for heading */
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Heading slide animations */
+.fade-left.show {
+  animation: fadeSlideLeft 0.8s ease-out forwards;
+}
+
+.fade-right.show {
+  animation: fadeSlideRight 0.8s ease-out forwards;
+}
+
+@keyframes fadeSlideLeft {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeSlideRight {
+  0% { opacity: 0; transform: translateX(30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Team cards bounce */
+.team-card.show {
+  animation: cartoonyBounce 1s cubic-bezier(.68,-0.55,.27,1.55);
+  /* remove 'forwards' so hover works */
+}
+
+/* Hover effect */
+.team-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on tablet */
+    gap: 1.5rem;
+  }
+
+  .team-card {
+    width: 150px; /* slightly smaller cards */
+    padding: 1.5rem 1rem;
+  }
+
+  .team-img {
+    width: 70px;
+    height: 70px;
+    border-width: 4px;
+  }
+
+  .team-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .team-card p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on small tablets/large phones */
+    gap: 1rem;
+  }
+
+  .team-card {
+    width: 140px;
+    padding: 1.2rem 0.8rem;
+  }
+
+  .team-img {
+    width: 60px;
+    height: 60px;
+    border-width: 3px;
+  }
+
+  .team-heading {
+    font-size: 2rem;
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr; /* single column on phones */
+    gap: 1rem;
+  }
+
+  .team-card {
+    width: 100%; /* fill width */
+    max-width: 250px;
+    padding: 1rem 0.8rem;
+  }
+
+  .team-img {
+    width: 50px;
+    height: 50px;
+    border-width: 3px;
+  }
+
+  .team-heading {
+    font-size: 1.8rem;
+    gap: 0.5rem;
+  }
+}
+
+
 /* Footer Styles */
 .footer {
   background: #000;
@@ -652,28 +1242,13 @@ body {
   text-decoration: none;
   font-size: 0.95rem;
   position: relative; /* para gumana yung ::after */
-  transition: color 0.3s ease;
-}
-
-/* underline animation sa footer nav */
-.footer-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px; /* konting space sa ilalim ng text */
-  width: 0%;
-  height: 2px;
-  background-color: #fff;
-  transition: width 0.3s ease;
-}
+  transition: color 0.3s ease, transform 0.3s ease; /* add transform transition */}
 
 .footer-nav a:hover {
   color: #8E1616;
+  transform: scale(1.1); /* slight zoom on hover */
 }
 
-.footer-nav a:hover::after {
-  width: 100%;
-}
 
 /* optional: active state */
 .footer-nav a.active::after {
@@ -685,10 +1260,12 @@ body {
   height: 40px;
   transition: 0.3s ease-in-out;
   cursor: pointer; /* kamay na cursor kapag hover */
-}
+  transition: color 0.3s ease, transform 0.3s ease; /* add transform transition */}
+
 
 .footer-logo:hover {
-   content: url("images/logo.png"); /* palit image pag hover */
+  transform: scale(1.2); /* slight zoom on hover */
+  content: url("images/logo.png"); /* change image on hover */
 }
 
 .footer-divider {
@@ -720,12 +1297,204 @@ body {
 }
 
 
+.footer-social a {
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
 .footer-social a:hover {
   background: #8E1616;
   border-color: #8E1616;
+  transform: scale(1.1); /* zoom effect */
 }
+
 
 .footer-bottom {
   font-size: 0.8rem;
   color: #aaa;
+}
+
+.footer {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 5rem 1rem;
+  margin-top: 100px;
+
+  /* Hidden state */
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.footer.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 📱 Mobile Responsive - Footer */
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1rem;
+  }
+
+  .footer-nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-nav a {
+    font-size: 0.9rem;
+  }
+
+  .footer-social {
+    gap: 1rem;
+  }
+
+  .footer-social a {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2.5rem 1rem;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .footer-nav a {
+    font-size: 0.85rem;
+  }
+
+  .footer-social {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .footer-social a {
+    width: 30px;
+    height: 30px;
+    font-size: 0.95rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.75rem;
+  }
+}
+
+
+/* Lightbox styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 10px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.lightbox .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.lightbox .close:hover {
+    color: #ff5555;
+}
+
+/* Lightbox navigation buttons */
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background-color: rgba(255,255,255,0.2);
+    color: #ff5555;
+}
+
+.lightbox-prev {
+    left: calc(50% - 45% - 40px); /* 45% = half of max-width, 40px = offset from image */
+}
+
+.lightbox-next {
+    right: calc(50% - 45% - 40px);
+}
+
+/* ========================= */
+/* 📱 Mobile Responsive for Lightbox */
+/* ========================= */
+@media (max-width: 768px) {
+  .lightbox-img {
+    max-width: 95%;
+    max-height: 75%;   /* allow room for controls */
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    font-size: 1.6rem;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 70%;
+  }
+
+  .lightbox .close {
+    font-size: 2rem;
+    top: 15px;
+    right: 20px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    font-size: 1.2rem;
+    padding: 6px 10px;
+  }
+
+  /* move nav buttons closer to edges for small screens */
+  .lightbox-prev {
+    left: 15px;
+  }
+
+  .lightbox-next {
+    right: 15px;
+  }
 }

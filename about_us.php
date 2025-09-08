@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <?php include 'navbar.php'; ?>
+<?php include 'navbar.php'; ?>
 
 <!-- About Us Section -->
 <section id="about" class="about-section">
@@ -24,6 +24,7 @@
     </div>
 </section>
 
+    <!-- Who we are Section -->
 
 <section id="who-we-are" class="section">
     <div class="container">
@@ -33,7 +34,7 @@
             <p>Our system combines flame, smoke, and gas sensors with an automated mobile robot that can navigate narrow or obstructed spaces, locate fire sources, and suppress them effectively. Equipped with a camera module for real-time monitoring and an alert system that contacts emergency responders if needed, the robot serves as a reliable first responder in residential environments.</p>
         </div>
 
-        <!-- Image Slider -->
+     <!-- Image Slider -->
         <div class="image slider">
             <div class="slides">
                 <img src="images/kami.png" alt="kami" class="about-img active">
@@ -92,7 +93,7 @@
     </section>
 
 <section class="our-values">
-  <!-- LEFT SIDE -->
+    <!-- LEFT SIDE -->
   <div class="values-left">
     <h2 class="values-heading">Our Values</h2>
     <p>
@@ -102,7 +103,7 @@
     </p>
   </div>
 
-  <!-- RIGHT SIDE -->
+    <!-- RIGHT SIDE -->
   <div class="values-right">
     <div class="accordion">
      <div class="accordion-item">
@@ -113,7 +114,6 @@
     We embrace creativity and technology to design smart solutions for real-world fire safety challenges.
   </div>
 </div>
-
 
       <div class="accordion-item">
         <button class="accordion-header">
@@ -145,7 +145,7 @@
   </div>
 </section>
 
-<!-- Our Partners Section -->
+   <!-- Our Partners Section -->
 <section id="partners" class="partners-section">
   <h2>Our Partners</h2>
   <div class="partners-slider">
@@ -166,9 +166,7 @@
   </div>
 </section>
 
-
-
-
+    <!-- Our Team Section -->
 
 <section class="our-team">
   <h2 class="team-heading">Meet Our Team</h2>
@@ -233,6 +231,8 @@
   </div>
 </section>
 
+    <!-- Footer  -->
+
 <footer id="contact_us" class="footer">
   <div class="footer-nav">
     <a href="#">Home</a>
@@ -255,7 +255,53 @@
   </div>
 </footer>
 
+<!-- Lightbox Gallery -->
+<div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <button class="lightbox-prev">&#10094;</button>
+    <img class="lightbox-img" src="">
+    <button class="lightbox-next">&#10095;</button>
+</div>
+
+
+
+<!----------------------------SCRIPTTT---------------------------->
+
     <script src="about_us.js"></script>
+
+
+<!--  ABOUT US -->
+
+<script>
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  const parallax = document.querySelector(".parallax-bg");
+
+  // adjust multiplier para sa bilis (0.4 = mas mabagal kaysa scroll)
+  parallax.style.transform = `translateY(${scrollY * 0.4}px)`;
+});
+</script>
+
+    <script>
+const elements = document.querySelectorAll('.about-section h1, .about-section p');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Remove and re-add the class to retrigger animation
+      entry.target.classList.remove('show');
+      void entry.target.offsetWidth; // trigger reflow
+      entry.target.classList.add('show');
+    }
+  });
+}, {
+  threshold: 0.1 // trigger when 10% of the element is visible
+});
+
+elements.forEach(el => observer.observe(el));
+</script>
+
+<!--  WHO WE ARE  -->
 
     <script>
     const slides = document.querySelectorAll("#who-we-are .about-img");
@@ -290,6 +336,128 @@ if (autoSlide) {
 </script>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const whoWeAre = document.querySelector("#who-we-are");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        whoWeAre.classList.add("show");
+      } else {
+        whoWeAre.classList.remove("show");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(whoWeAre);
+});
+</script>
+
+<!--  OUR MISSION  -->
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const h2 = document.querySelector("#mission h2");
+  const p = document.querySelector("#mission > p");
+  const cards = document.querySelectorAll(".mission-card");
+
+  // lahat ng elements in order (top → bottom)
+  const allItems = [h2, p, ...cards];
+
+  // hidden lahat sa umpisa
+  allItems.forEach(item => item.classList.add("hidden"));
+
+  let lastScrollY = window.scrollY;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const goingDown = window.scrollY > lastScrollY;
+
+        // order depende sa scroll direction
+        const items = goingDown ? allItems : [...allItems].reverse();
+
+        // sequence show
+        items.forEach((item, i) => {
+          setTimeout(() => {
+            item.classList.remove("hidden", "fade-left", "fade-right", "show");
+
+            if (item === h2 || item === p) {
+              // 👉 h2 at p animation: left pababa, right pataas
+              item.classList.add(goingDown ? "fade-left" : "fade-right", "show");
+            } else {
+              // 👉 cards animation: bounce
+              void item.offsetWidth; // restart trick
+              item.classList.add("show");
+            }
+          }, i * 250);
+        });
+
+      } else {
+        // reset kapag nawala sa viewport
+        allItems.forEach(item => {
+          item.classList.remove("fade-left", "fade-right", "show");
+          item.classList.add("hidden");
+        });
+      }
+    });
+
+    lastScrollY = window.scrollY;
+  }, { threshold: 0.3 });
+
+  observer.observe(document.querySelector("#mission"));
+});
+</script>
+
+
+<!--  OUR VISION  -->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const visionContainer = document.querySelector("#vision");
+  const visionItems = [
+    visionContainer,
+    document.querySelector("#vision h2"),
+    document.querySelector("#vision p")
+  ];
+
+  // Start hidden
+  visionItems.forEach(item => item.classList.remove("show"));
+
+  let lastScrollY = window.scrollY;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const goingDown = window.scrollY > lastScrollY;
+        const items = goingDown ? visionItems : [...visionItems].reverse();
+
+        // Sequential animation
+        items.forEach((item, i) => {
+          setTimeout(() => {
+            item.classList.add("show");
+          }, i * 200);
+        });
+      } else {
+        // Reset para gumana ulit pag balik
+        visionItems.forEach(item => {
+          item.classList.remove("show");
+        });
+      }
+    });
+
+    lastScrollY = window.scrollY;
+  }, { threshold: 0.3 });
+
+  observer.observe(visionContainer);
+});
+</script>
+
+
+<!--  OUR VALUES  -->
+
+<script>
 document.querySelectorAll(".accordion-header").forEach(btn => {
   btn.addEventListener("click", () => {
     const item = btn.parentElement;
@@ -322,6 +490,54 @@ document.querySelectorAll(".accordion-header").forEach(btn => {
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  const section = document.querySelector(".our-values");
+  const items = [
+    section.querySelector(".values-left h2"),
+    section.querySelector(".values-left p"),
+    ...section.querySelectorAll(".accordion-item")
+  ];
+
+  // hidden lahat sa umpisa
+  items.forEach(item => item.classList.add("hidden"));
+
+  let lastScrollY = window.scrollY;
+  let hasPlayed = false; // ✅ flag para hindi ulit-ulit habang nasa loob
+
+  document.addEventListener("scroll", () => {
+    const rect = section.getBoundingClientRect();
+    const goingDown = window.scrollY > lastScrollY;
+
+    if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
+      if (!hasPlayed) {
+        const ordered = goingDown ? items : [...items].reverse();
+
+        ordered.forEach((item, i) => {
+          setTimeout(() => {
+            item.classList.remove("hidden", "fade-left", "fade-right", "show");
+            item.classList.add(goingDown ? "fade-left" : "fade-right", "show");
+          }, i * 150);
+        });
+
+        hasPlayed = true; // ✅ para isang play lang habang visible
+      }
+    } else {
+      // reset kapag totally labas ng viewport
+      items.forEach(item => {
+        item.classList.remove("fade-left", "fade-right", "show");
+        item.classList.add("hidden");
+      });
+      hasPlayed = false; // pwede ulit mag-trigger next time
+    }
+
+    lastScrollY = window.scrollY <= 0 ? 0 : window.scrollY;
+  });
+});
+</script>
+
+<!--  OUR PARTNERS  -->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector(".partners-track");
   const items = Array.from(track.children);
 
@@ -336,54 +552,178 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY;
-  const parallax = document.querySelector(".parallax-bg");
+document.addEventListener("DOMContentLoaded", () => {
+  const partnersSection = document.querySelector(".partners-section");
+  partnersSection.classList.add("hidden");
 
-  // adjust multiplier para sa bilis (0.4 = mas mabagal kaysa scroll)
-  parallax.style.transform = `translateY(${scrollY * 0.4}px)`;
-});
-</script>
+  let lastScrollY = window.scrollY;
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const aboutH1 = document.querySelector(".about-section h1");
-  const aboutP = document.querySelector(".about-section p");
-
-  const observer = new IntersectionObserver(entries => {
+  const partnersObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        aboutH1.classList.add("show");
-        setTimeout(() => {
-          aboutP.classList.add("show");
-        }, 200); // konting delay for stagger
-        observer.unobserve(entry.target); // one-time trigger
-      }
-    });
-  }, { threshold: 0.2 });
+        const goingDown = window.scrollY > lastScrollY;
 
-  observer.observe(document.querySelector(".about-section"));
-});
-</script>
+        partnersSection.classList.remove("hidden", "fade-left", "fade-right", "show");
+        void partnersSection.offsetWidth; // reset trick para mag-retrigger animation
 
-
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const whoWeAre = document.querySelector("#who-we-are");
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        whoWeAre.classList.add("show");
+        // Scroll direction animation
+        partnersSection.classList.add(goingDown ? "fade-left" : "fade-right", "show");
       } else {
-        whoWeAre.classList.remove("show");
+        partnersSection.classList.remove("fade-left", "fade-right", "show");
+        partnersSection.classList.add("hidden");
       }
     });
-  }, { threshold: 0.2 });
 
-  observer.observe(whoWeAre);
+    lastScrollY = window.scrollY;
+  }, { threshold: 0.3 });
+
+  partnersObserver.observe(partnersSection);
+});
+</script>
+
+
+<!--  OUR TEAM  -->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const teamSection = document.querySelector(".our-team");
+  const teamHeading = teamSection.querySelector(".team-heading");
+  const teamCards = teamSection.querySelectorAll(".team-card");
+
+  // Combine heading + cards into an ordered array
+  const allTeamItems = [teamHeading, ...teamCards];
+
+  // Hide everything initially
+  allTeamItems.forEach(item => item.classList.add("hidden"));
+
+  let lastScrollY = window.scrollY;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const goingDown = window.scrollY > lastScrollY;
+        const items = goingDown ? allTeamItems : [...allTeamItems].reverse();
+
+        items.forEach((item, i) => {
+          setTimeout(() => {
+            item.classList.remove("hidden", "show", "fade-left", "fade-right");
+
+            if (item === teamHeading) {
+              // heading slides from left or right
+              item.classList.add(goingDown ? "fade-left" : "fade-right", "show");
+            } else {
+              // team cards bounce
+              void item.offsetWidth; // restart animation
+              item.classList.add("show");
+            }
+          }, i * 200);
+        });
+      } else {
+        // reset when out of viewport
+        allTeamItems.forEach(item => {
+          item.classList.remove("show", "fade-left", "fade-right");
+          item.classList.add("hidden");
+        });
+      }
+    });
+
+    lastScrollY = window.scrollY;
+  }, { threshold: 0.3 });
+
+  observer.observe(teamSection);
+});
+</script>
+
+
+<!-- FOOTER  -->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const footer = document.querySelector(".footer");
+
+  function revealFooter() {
+    const windowHeight = window.innerHeight;
+    const footerTop = footer.getBoundingClientRect().top;
+    const footerBottom = footer.getBoundingClientRect().bottom;
+
+    // Check if any part of footer is in view
+    if (footerTop < windowHeight && footerBottom > 0) { 
+      footer.classList.add("show");
+    } else {
+      footer.classList.remove("show"); // remove class when out of view
+    }
+  }
+
+  window.addEventListener("scroll", revealFooter);
+  revealFooter(); // initial check
+});
+
+  </script>
+
+
+<!-- VIEWER NANG PEKCHUR  -->
+
+<script>
+// Lightbox with next/prev
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.querySelector(".lightbox-img");
+const closeBtn = document.querySelector(".lightbox .close");
+const lbPrev = document.querySelector(".lightbox-prev");
+const lbNext = document.querySelector(".lightbox-next");
+
+let lbIndex = 0;
+
+// Open lightbox
+function openLightbox(i) {
+    lbIndex = i;
+    lightbox.style.display = "flex";
+    updateLightbox();
+}
+
+// Update image and buttons
+function updateLightbox() {
+    lightboxImg.src = slides[lbIndex].src;
+
+    // Show/hide prev/next buttons
+    lbPrev.style.display = lbIndex === 0 ? "none" : "block";
+    lbNext.style.display = lbIndex === slides.length - 1 ? "none" : "block";
+}
+
+// Open lightbox on image click
+slides.forEach((slide, i) => {
+    slide.addEventListener("click", () => openLightbox(i));
+});
+
+// Close lightbox
+closeBtn.addEventListener("click", () => lightbox.style.display = "none");
+
+// Click outside image closes lightbox
+lightbox.addEventListener("click", e => {
+    if (e.target === lightbox) lightbox.style.display = "none";
+});
+
+// Navigate lightbox images
+lbPrev.addEventListener("click", () => {
+    if (lbIndex > 0) {
+        lbIndex--;
+        updateLightbox();
+    }
+});
+
+lbNext.addEventListener("click", () => {
+    if (lbIndex < slides.length - 1) {
+        lbIndex++;
+        updateLightbox();
+    }
+});
+
+// Optional: arrow keys support
+document.addEventListener("keydown", e => {
+    if (lightbox.style.display === "flex") {
+        if (e.key === "ArrowLeft" && lbIndex > 0) lbPrev.click();
+        if (e.key === "ArrowRight" && lbIndex < slides.length - 1) lbNext.click();
+        if (e.key === "Escape") closeBtn.click();
+    }
 });
 </script>
 
