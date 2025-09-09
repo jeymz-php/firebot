@@ -6,9 +6,13 @@
 <div class="sidebar">
   <!-- Logo + Title -->
   <div class="sidebar-header">
-    <img src="images/logo1.png" alt="FireBOT Logo" class="logo-img">
-    <h2>FireBOT</h2>
+    <a href="admin.php" class="sidebar-link">
+      <img src="images/logo1.png" alt="FireBOT Logo" class="logo-img">
+      <h2>FireBOT</h2>
+    </a>
   </div>
+</div>
+
 
   <!-- Menu -->
   <ul class="nav-links">
