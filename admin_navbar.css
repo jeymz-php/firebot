@@ -31,6 +31,17 @@
   height: 70px;           /* pareho sa .header */
 }
 
+.sidebar-header a {
+  display: flex;         /* para logo + text in one line */
+  align-items: center;   /* vertical center */
+  gap: 10px;             /* konting space sa pagitan */
+  text-decoration: none; /* tanggal underline */
+  color: inherit;        /* sundan kulay ng parent */
+  width: 100%;
+  height: 100%;
+}
+
+
 
 /* Logo image */
 .sidebar-header img {

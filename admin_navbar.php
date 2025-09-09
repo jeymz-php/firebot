@@ -11,8 +11,6 @@
       <h2>FireBOT</h2>
     </a>
   </div>
-</div>
-
 
   <!-- Menu -->
   <ul class="nav-links">
