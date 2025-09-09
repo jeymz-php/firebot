@@ -236,7 +236,7 @@
 <footer id="contact_us" class="footer">
   <div class="footer-nav">
     <a href="#">Home</a>
-    <a href="#">About Us</a>
+    <a href="#about">About Us</a>
     <img src="images/logo1.png" alt="Logo" class="footer-logo">
     <a href="#">Guide</a>
     <a href="#">Contact Us</a>
@@ -245,7 +245,7 @@
   <hr class="footer-divider">
 
   <div class="footer-social">
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.facebook.com/photo/?fbid=9040457186004104&set=a.125169130866332&__tn__=%3C"><i class="fab fa-facebook-f"></i></a>
     <a href="#"><i class="fab fa-instagram"></i></a>
     <a href="#"><i class="fas fa-envelope"></i></a>
   </div>
