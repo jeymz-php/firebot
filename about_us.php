@@ -40,6 +40,7 @@
                 <img src="images/kami.png" alt="kami" class="about-img active">
                 <img src="images/1.png" alt="1" class="about-img">
                 <img src="images/3.png" alt="2" class="about-img">
+                <img src="images/hehehe.png" alt="2" class="about-img">
             </div>
             <button class="prev">&#10094;</button>
             <button class="next">&#10095;</button>
