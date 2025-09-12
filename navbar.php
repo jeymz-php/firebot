@@ -17,10 +17,10 @@
                 <a href="about_us.php" class="nav-link <?php echo ($active_page == 'about_us.php') ? 'active' : ''; ?>">About Us</a>
             </li>
             <li class="nav-item">
-                <a href="guide.php" class="nav-link <?php echo ($active_page == 'guide.php') ? 'active' : ''; ?>">Guide</a>
+                <a href="guide_page.php" class="nav-link <?php echo ($active_page == 'guide.php') ? 'active' : ''; ?>">Guide</a>
             </li>
             <li class="nav-item">
-                <a href="#contact_us" class="nav-link <?php echo ($active_page == 'contact-us.php') ? 'active' : ''; ?>">Contact Us</a>
+                <a href="index.php#contact-us" class="nav-link <?php echo ($active_page == 'contact-us.php') ? 'active' : ''; ?>">Contact Us</a>
             </li>
         </ul>
         <div class="hamburger">

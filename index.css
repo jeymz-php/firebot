@@ -18,6 +18,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 main {
@@ -120,10 +121,13 @@ body {
 }
 
 .hero-title .logo-inline img {
-    height: 2em;
+    height: 1.5em;       /* mas proportional sa text */
     width: auto;
     display: inline-block;
-    vertical-align: middle;
+    margin-left: -20px;   /* lapit sa "B" */
+    margin-right: -20px;  /* lapit sa "T" */
+    padding: 0;          /* siguraduhin walang padding */
+    vertical-align: middle; /* pantay sa text */
     text-decoration: none;
 }
 
@@ -237,6 +241,8 @@ body {
     }
 }
 
+
+
 /* key features */
 .features-section {
     background-color: var(--white);
@@ -249,6 +255,11 @@ body {
     font-weight: 900;
     margin-bottom: 15px;
     color: var(--black);
+
+    /* animation helpers */
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease;
 }
 
 .section-subtitle {
@@ -257,6 +268,11 @@ body {
     font-size: 1rem;
     color: var(--black);
     line-height: 1.6;
+
+    /* animation helpers */
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease;
 }
 
 .features-grid {
@@ -396,6 +412,34 @@ body {
         font-size: 0.9rem;
     }
 }
+
+/* --- only for the section headings (do NOT apply this to .feature-card) --- */
+.features-section .heading-hidden {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease;
+}
+
+/* slide-left when shown */
+.features-section .fade-left.show {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease;
+}
+
+/* slide-right when shown */
+.features-section .fade-right.show {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease;
+}
+
+.features-section .fade-right {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+
 
 /* why choose us */
 .why-choose-us {

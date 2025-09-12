@@ -58,14 +58,14 @@ body {
   left: 0;
   width: 100%;
   height: 120%;
-  background: #000 url("images/kami.png") center/cover no-repeat; /* black fallback */
-  filter: brightness(0.5); /* no blur here to avoid white edges */
+  background: #000 url("images/kami.png") center/cover no-repeat;
+  filter: brightness(0.5);
   z-index: 0;
   will-change: transform;
-  overflow: hidden;
+  animation: introBlur 1.2s ease-out; /* blur intro effect */
 }
 
-/* extra layers for shuffle effect */
+/* overlays for shuffle */
 .parallax-bg::before,
 .parallax-bg::after {
   content: "";
@@ -77,14 +77,13 @@ body {
   background-size: cover;
   background-position: center;
   opacity: 0;
-  animation: shuffle 6s infinite;
-  filter: brightness(0.5);
-  backdrop-filter: blur(4px); /* apply blur only as overlay */
+  z-index: 1;
+  animation: shuffle 6s infinite; /* faster slideshow */
 }
 
 /* 2nd image */
 .parallax-bg::before {
-  background-image: url("images/11.png");
+  background-image: url("images/55.png");
   animation-delay: 2s;
 }
 
@@ -94,14 +93,25 @@ body {
   animation-delay: 4s;
 }
 
-/* Super quick fade in/out */
+/* intro blur once */
+@keyframes introBlur {
+  0% {
+    filter: brightness(0.5) blur(12px);
+  }
+  100% {
+    filter: brightness(0.5) blur(0px);
+  }
+}
+
+/* smooth & quick shuffle */
 @keyframes shuffle {
   0%   { opacity: 0; }
-  20%  { opacity: 1; }
-  40%  { opacity: 1; }
-  60%  { opacity: 0; }
+  15%  { opacity: 1; }
+  35%  { opacity: 1; }
+  50%  { opacity: 0; }
   100% { opacity: 0; }
 }
+
 
 
 .about-section h1{

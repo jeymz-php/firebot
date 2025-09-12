@@ -39,8 +39,8 @@
             <div class="slides">
                 <img src="images/kami.png" alt="kami" class="about-img active">
                 <img src="images/1.png" alt="1" class="about-img">
-                <img src="images/3.png" alt="2" class="about-img">
-                <img src="images/hehehe.png" alt="2" class="about-img">
+                <img src="images/55.jpg" alt="2" class="about-img">
+                
             </div>
             <button class="prev">&#10094;</button>
             <button class="next">&#10095;</button>
@@ -152,16 +152,16 @@
   <div class="partners-slider">
     <div class="partners-track">
       <div class="partner-item">
-        <div class="partner-logo"><img src="images/3.png" alt="Company 1"></div>
-        Beans Ngit
+        <div class="partner-logo"><img src="images/00.jpg" alt="Company 1"></div>
+        Company Name  
       </div>
       <div class="partner-item">
-        <div class="partner-logo"><img src="images/5.jpg" alt="Company 2"></div>
-        Ngit Ulit
+        <div class="partner-logo"><img src="images/00.jpg" alt="Company 2"></div>
+        Company Name  
       </div>
       <div class="partner-item">
-        <div class="partner-logo"><img src="images/4.jpg" alt="Company 3"></div>
-        Mark Ngit
+        <div class="partner-logo"><img src="images/00.jpg" alt="Company 3"></div>
+        Company Name  
       </div>
     </div>
   </div>

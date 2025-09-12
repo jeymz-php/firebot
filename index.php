@@ -35,7 +35,7 @@
                 </p>
                 <div class="buttons">
                     <a href="#" class="btn-primary">Get Started</a>
-                    <a href="#" class="btn-secondary">Contact Us</a>
+                    <a href="#contact-us" class="btn-secondary">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -251,7 +251,7 @@
 
 
     <!-- contact us -->
-    <section class="contact-us">
+    <section id="contact-us" class="contact-us">
         <div class="contact-container">
             <h1>Contact Us</h1>
             <hr>
@@ -358,6 +358,9 @@
         <button class="lightbox-next">&#10095;</button>
     </div>
 
+
+    <!----------------------------SCRIPTTT---------------------------->
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const footer = document.querySelector(".footer");
@@ -378,6 +381,83 @@
             revealFooter();
         });
     </script>
+
+<!--  KEY FEATURES  -->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const h2 = document.querySelector(".features-section .section-title");
+  const p = document.querySelector(".features-section .section-subtitle");
+  const cards = document.querySelectorAll(".features-section .feature-card");
+
+  // lahat ng elements in order
+  const allItems = [h2, p, ...cards];
+
+  // hidden lahat sa umpisa
+  h2.classList.add("heading-hidden");
+  p.classList.add("heading-hidden");
+  cards.forEach(card => card.classList.add("hidden"));
+
+  let lastScrollY = window.scrollY;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const goingDown = window.scrollY > lastScrollY;
+
+        // order depende sa scroll direction
+        const items = goingDown ? allItems : [...allItems].reverse();
+
+        // sequence show
+        items.forEach((item, i) => {
+          setTimeout(() => {
+            if (item === h2 || item === p) {
+              item.classList.remove("heading-hidden", "fade-left", "fade-right", "show");
+              item.classList.add(goingDown ? "fade-left" : "fade-right", "show");
+            } else {
+              item.classList.remove("hidden", "show");
+              void item.offsetWidth; // restart trick
+              item.classList.add("show");
+            }
+          }, i * 300);
+        });
+
+      } else {
+        // reset kapag wala sa viewport
+        h2.classList.remove("fade-left", "fade-right", "show");
+        p.classList.remove("fade-left", "fade-right", "show");
+        h2.classList.add("heading-hidden");
+        p.classList.add("heading-hidden");
+
+        cards.forEach(card => {
+          card.classList.remove("show");
+          card.classList.add("hidden");
+        });
+      }
+    });
+
+    lastScrollY = window.scrollY;
+  }, { threshold: 0.3 });
+
+  observer.observe(document.querySelector(".features-section"));
+});
+</script>
+
+<sodium_crypto_sign_publickey
+
+
+    <script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+});
+</script>
+
+
 </body>
 
 </html>
