@@ -1,4 +1,3 @@
-
 <!-- Sticky Navigation Bar -->
 <nav class="navbar">
     <div class="nav-container">
@@ -6,7 +5,7 @@
             <a href="index.php" class="logo">
                 FireB
                 <img src="images/logo.png" alt="O Logo" class="logo-o">
-                    <span class="logo-t">T</span>
+                <span class="logo-t">T</span>
             </a>
         </div>
         <ul class="nav-menu">
@@ -18,6 +17,7 @@
             </li>
             <li class="nav-item">
                 <a href="guide_page.php" class="nav-link <?php echo ($active_page == 'guide.php') ? 'active' : ''; ?>">Guide</a>
+                <a href="guide_page.php" class="nav-link <?php echo ($active_page == 'guide_page.php') ? 'active' : ''; ?>">Guide</a>
             </li>
             <li class="nav-item">
                 <a href="index.php#contact-us" class="nav-link <?php echo ($active_page == 'contact-us.php') ? 'active' : ''; ?>">Contact Us</a>
