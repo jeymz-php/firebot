@@ -15,6 +15,42 @@
 <body>
     <?php include 'navbar.php'; ?>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const hamburger = document.querySelector(".hamburger");
+            const navMenu = document.querySelector(".nav-menu");
+
+            if (!hamburger || !navMenu) return;
+
+            hamburger.addEventListener("click", () => {
+                hamburger.classList.toggle("active");
+                navMenu.classList.toggle("active");
+            });
+
+            document.querySelectorAll(".nav-link").forEach(n =>
+                n.addEventListener("click", () => {
+                    hamburger.classList.remove("active");
+                    navMenu.classList.remove("active");
+                })
+            );
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
     <section class="hero-container">
         <div class="hero">
             <div class="hero-content">
@@ -44,6 +80,32 @@
             <img src="images/prototypev1.png" alt="FireBOT">
         </div>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const heroContent = document.querySelector(".hero-content");
+            const heroImage = document.querySelector(".hero-image");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        heroContent.classList.add("show");
+                        heroImage.classList.add("show");
+                    } else {
+                        heroContent.classList.remove("show");
+                        heroImage.classList.remove("show");
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            const heroSection = document.querySelector(".hero-container");
+            if (heroSection) observer.observe(heroSection);
+        });
+    </script>
+
+
 
     <!-- key features -->
     <section class="features-section">
@@ -100,13 +162,27 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const cards = document.querySelectorAll(".feature-card");
-            cards.forEach((card, i) => {
-                setTimeout(() => {
-                    card.classList.add("show");
-                }, i * 200);
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        cards.forEach((card, i) => {
+                            setTimeout(() => {
+                                card.classList.add("show");
+                            }, i * 200);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2
             });
+
+            const section = document.querySelector(".features-section");
+            if (section) observer.observe(section);
         });
     </script>
+
 
 
     <!-- why choose us -->
@@ -181,18 +257,32 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const section = document.querySelector(".why-choose-us");
-            const features = document.querySelectorAll(".feature");
+            const whySection = document.querySelector(".why-choose-us");
+            const whyFeatures = document.querySelectorAll(".feature");
 
-            section.classList.add("show");
+            if (!whySection) return;
 
-            features.forEach((feature, i) => {
-                setTimeout(() => {
-                    feature.classList.add("show");
-                }, i * 200);
+            const observerWhy = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        whySection.classList.add("show");
+                        whyFeatures.forEach((item, i) => {
+                            setTimeout(() => item.classList.add("show"), i * 200);
+                        });
+                    } else {
+                        whySection.classList.remove("show");
+                        whyFeatures.forEach(item => item.classList.remove("show"));
+                    }
+                });
+            }, {
+                threshold: 0.2
             });
+
+            observerWhy.observe(whySection);
         });
     </script>
+
+
 
 
     <!-- benefits -->
@@ -236,19 +326,30 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const section = document.querySelector(".benefits");
-            const cards = document.querySelectorAll(".benefits .b-card");
+            const benefitsSection = document.querySelector(".benefits");
+            const benefitCards = document.querySelectorAll(".benefits .b-card");
 
-            section.classList.add("show");
+            if (!benefitsSection) return;
 
-            cards.forEach((card, i) => {
-                setTimeout(() => {
-                    card.classList.add("show");
-                }, i * 250);
+            const observerBenefits = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        benefitsSection.classList.add("show");
+                        benefitCards.forEach((item, i) => {
+                            setTimeout(() => item.classList.add("show"), i * 200);
+                        });
+                    } else {
+                        benefitsSection.classList.remove("show");
+                        benefitCards.forEach(item => item.classList.remove("show"));
+                    }
+                });
+            }, {
+                threshold: 0.2
             });
+
+            observerBenefits.observe(benefitsSection);
         });
     </script>
-
 
     <!-- contact us -->
     <section class="contact-us">
@@ -316,16 +417,29 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const section = document.querySelector(".contact-us");
-            const left = document.querySelector(".contact-us .left-panel");
-            const right = document.querySelector(".contact-us .right-panel");
+            const contactSection = document.querySelector(".contact-us");
+            const contactPanels = document.querySelectorAll(".contact-us .left-panel, .contact-us .right-panel");
 
-            section.classList.add("show");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        contactSection.classList.add("show");
+                        contactPanels.forEach(panel => panel.classList.add("show"));
+                    } else {
+                        contactSection.classList.remove("show");
+                        contactPanels.forEach(panel => panel.classList.remove("show"));
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
 
-            setTimeout(() => left.classList.add("show"), 300);
-            setTimeout(() => right.classList.add("show"), 600);
+            observer.observe(contactSection);
         });
     </script>
+
+
+
 
 
     <!-- footer -->
@@ -362,22 +476,20 @@
         document.addEventListener("DOMContentLoaded", () => {
             const footer = document.querySelector(".footer");
 
-            function revealFooter() {
-                const windowHeight = window.innerHeight;
-                const footerTop = footer.getBoundingClientRect().top;
-                const footerBottom = footer.getBoundingClientRect().bottom;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        footer.classList.add("show");
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
 
-                if (footerTop < windowHeight && footerBottom > 0) {
-                    footer.classList.add("show");
-                } else {
-                    footer.classList.remove("show");
-                }
-            }
-
-            window.addEventListener("scroll", revealFooter);
-            revealFooter();
+            if (footer) observer.observe(footer);
         });
     </script>
+
 </body>
 
 </html>
