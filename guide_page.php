@@ -88,7 +88,7 @@
     <a href="#">About Us</a>
     <img src="images/logo1.png" alt="Logo" class="footer-logo">
     <a href="#">Guide</a>
-    <a href="#">Contact Us</a>
+    <a href="index.php#contact-us">Contact Us</a>
   </div>
 
   <hr class="footer-divider">
