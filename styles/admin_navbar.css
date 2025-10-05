@@ -3,6 +3,7 @@
 
 /* Sidebar container */
 .sidebar {
+  position: sticky;
   width: 220px;
   min-height: 100vh;
   background: #fff;

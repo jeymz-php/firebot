@@ -6,8 +6,8 @@
 <div class="sidebar">
   <!-- Logo + Title -->
   <div class="sidebar-header">
-    <a href="admin.php" class="sidebar-link">
-      <img src="images/logo1.png" alt="FireBOT Logo" class="logo-img">
+    <a href="index.php" class="sidebar-link">
+      <img src="../images/logo1.png" alt="FireBOT Logo" class="logo-img">
       <h2>FireBOT</h2>
     </a>
   </div>
@@ -15,7 +15,7 @@
   <!-- Menu -->
   <ul class="nav-links">
     <li class="nav-item active">
-      <a href="admin.php"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+      <a href="index.php"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
       <hr>
     </li>
     <li class="nav-item">

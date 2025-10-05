@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Messages</title>
-  <link rel="stylesheet" href="admin_navbar.css">
-  <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="messages.css">
+  <link rel="stylesheet" href="../styles/admin_navbar.css">
+  <link rel="stylesheet" href="../styles/global_admin.css">
+    <link rel="stylesheet" href="../styles/messages.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>

@@ -7,8 +7,8 @@
     <title>Landing Page - FIREBOT</title>
     <link rel="icon" href="images/favicon.png" type="images/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/navbar.css">
 
 </head>
 
