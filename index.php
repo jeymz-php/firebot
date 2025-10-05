@@ -70,7 +70,7 @@
                     it provides early fire suppression and protection when you need it most.
                 </p>
                 <div class="buttons">
-                    <a href="#" class="btn-primary">Get Started</a>
+                    <a href="guide_page.php" class="btn-primary">Get Started</a>
                     <a href="index.php#contact-us" class="btn-secondary">Contact Us</a>
                 </div>
             </div>
