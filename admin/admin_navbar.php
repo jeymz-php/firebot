@@ -1,10 +1,7 @@
 <?php
-// ✅ Ensure session is active
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-// ✅ Example session data (remove this once real login sets it)
 $_SESSION['username'] = $_SESSION['username'] ?? 'admin';
 $_SESSION['email'] = $_SESSION['email'] ?? 'admin@example.com';
 $_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
@@ -80,7 +77,6 @@ $_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
   </div>
 </div>
 
-<!-- JS -->
 <script>
   const burger = document.querySelector('.burger');
   const sidebar = document.querySelector('.sidebar');
@@ -88,13 +84,11 @@ $_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
   const dropdownMenu = document.getElementById('dropdownMenu');
   const caret = adminDropdown.querySelector('.caret');
 
-  // Toggle sidebar
   burger.addEventListener('click', () => {
     sidebar.classList.toggle('active');
     burger.classList.toggle('active');
   });
 
-  // Toggle admin dropdown with animation
   adminDropdown.addEventListener('click', (e) => {
     dropdownMenu.classList.toggle('show');
     caret.classList.toggle('fa-caret-down');
@@ -102,7 +96,6 @@ $_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
     e.stopPropagation();
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener('click', (e) => {
     if (!adminDropdown.contains(e.target)) {
       dropdownMenu.classList.remove('show');
@@ -111,30 +104,25 @@ $_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
     }
   });
 
-  // Profile modal
   const profileBtn = document.querySelector('.profile-btn');
   const profileModal = document.getElementById('profileModal');
   const closeBtn = document.querySelector('.close-btn');
   const closeModalBtn = document.querySelector('.close-modal-btn');
 
-  // Open modal
   profileBtn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
     profileModal.style.display = 'flex';
   });
 
-  // Close modal (X)
   closeBtn.addEventListener('click', () => {
     profileModal.style.display = 'none';
   });
 
-  // Close modal (button)
   closeModalBtn.addEventListener('click', () => {
     profileModal.style.display = 'none';
   });
 
-  // Click outside closes modal
   window.addEventListener('click', (e) => {
     if (e.target === profileModal) {
       profileModal.style.display = 'none';
