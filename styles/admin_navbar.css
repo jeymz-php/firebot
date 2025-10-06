@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 /* Sidebar container */
@@ -10,46 +9,45 @@
   border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* 🔑 para dikit sa taas */
-    left: -250px;
+  justify-content: flex-start;
+  left: -250px;
   transition: left 0.3s ease;
 }
 
-/* Kapag active */
+/* Active state for sidebar */
 .sidebar.active {
   left: 0;
 }
+
 /* Sidebar Header */
 .sidebar-header {
   display: flex;
   align-items: center;
-  padding: 0 16px;        /* tanggalin vertical padding */
+  padding: 0 16px;
   background: #8E1616;
   color: #fff;
   font-size: 1.1rem;
   font-weight: bold;
   line-height: 1;
-  height: 70px;           /* pareho sa .header */
+  height: 70px;
 }
 
 .sidebar-header a {
-  display: flex;         /* para logo + text in one line */
-  align-items: center;   /* vertical center */
-  gap: 10px;             /* konting space sa pagitan */
-  text-decoration: none; /* tanggal underline */
-  color: inherit;        /* sundan kulay ng parent */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
   width: 100%;
   height: 100%;
 }
 
-
-
 /* Logo image */
 .sidebar-header img {
-  width: 48px;   /* adjust size to match your sample */
+  width: 48px;
   height: 48px;
   flex-shrink: 0;
-  object-fit: contain; /* keeps proportions */
+  object-fit: contain;
 }
 
 /* Sidebar Header Hover */
@@ -59,13 +57,13 @@
 
 /* Logo hover effect */
 .sidebar-header:hover img {
-  filter: brightness(0); /* gagawing black lang */
+  filter: brightness(0);
   transition: filter 0.3s ease;
 }
 
 /* H2 text hover effect */
 .sidebar-header:hover h2 {
-  color: #000; /* gawing black lang */
+  color: #000;
   transition: color 0.3s ease;
 }
 
@@ -78,7 +76,7 @@
 
 .nav-links li {
   margin: -5px 0;
-  overflow: hidden;   /* 🔑 para hindi lumampas yung zoom */
+  overflow: hidden;
 }
 
 .nav-links a {
@@ -96,11 +94,10 @@
 .nav-links a:hover {
   background: #1a1414;
   color: #fff;
-  transform: scale(1.05);  /* zoom effect */
+  transform: scale(1.05);
 }
 
-
-/* Sidebar footer */
+/* Sidebar footer (Admin dropdown section) */
 .sidebar-footer {
   margin-top: auto;
   padding: 15px 20px;
@@ -110,15 +107,178 @@
   align-items: center;
   gap: 8px;
   transition: background 0.3s, color 0.3s;
-  cursor: pointer;         /* para obvious na clickable */
+  cursor: pointer;
+  position: relative;
 }
 
 .sidebar-footer:hover {
-  background: #8E1616;     /* same hover style as links */
+  background: #8E1616;
   color: #fff;
 }
 
-/* Initial hidden state */
+.sidebar-footer .caret {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+/* Modal Overlay */
+.modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Box */
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  animation: scaleUp 0.3s ease;
+  position: relative;
+}
+
+/* Header */
+.profile-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.profile-header i {
+  font-size: 3rem;
+  color: #8E1616;
+}
+
+.profile-header h2 {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Profile Details */
+.profile-details {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+/* Footer Button */
+.modal-footer {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.close-modal-btn {
+  background: #8E1616;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.close-modal-btn:hover {
+  background: #661010;
+}
+
+/* Close (X) Button */
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 1.5rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.dropdown-menu {
+  position: absolute;
+  bottom: 55px;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  z-index: 100;
+  overflow: hidden;
+
+  /* Animation setup */
+  transform-origin: bottom;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  pointer-events: none; /* disables click when hidden */
+}
+
+/* When dropdown is visible */
+.dropdown-menu.show {
+  transform: scaleY(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Dropdown items */
+.dropdown-menu a {
+  padding: 12px;
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s, color 0.2s;
+  font-size: 0.9rem;
+}
+
+.dropdown-menu a i {
+  width: 18px;
+  text-align: center;
+}
+
+.dropdown-menu a:hover {
+  background: #8E1616;
+  color: #fff;
+}
+
+/* Divider between Profile and Logout */
+.dropdown-menu hr {
+  margin: 0;
+  border: none;
+  height: 1px;
+  background: #ddd;
+}
+
+/* Animations */
 .sidebar,
 .sidebar-header,
 .nav-links li,
@@ -127,7 +287,6 @@
   transform: translateX(-40px);
 }
 
-/* Keyframes for slide-in */
 @keyframes slideIn {
   to {
     opacity: 1;
@@ -135,19 +294,14 @@
   }
 }
 
-/* Sidebar container */
+/* Animate items */
 .sidebar {
   animation: slideIn 0.6s ease forwards;
-  animation-delay: 0s;
 }
-
-/* Header */
 .sidebar-header {
   animation: slideIn 0.6s ease forwards;
   animation-delay: 0.2s;
 }
-
-/* Nav links staggered */
 .nav-links li:nth-child(1) {
   animation: slideIn 0.6s ease forwards;
   animation-delay: 0.4s;
@@ -164,32 +318,24 @@
   animation: slideIn 0.6s ease forwards;
   animation-delay: 1s;
 }
-.nav-links li:nth-child(5) {
+.sidebar-footer {
   animation: slideIn 0.6s ease forwards;
   animation-delay: 1.2s;
 }
-/* dagdagan pa kung mas marami kang links */
 
-/* Footer */
-.sidebar-footer {
-  animation: slideIn 0.6s ease forwards;
-  animation-delay: 1.4s;
-}
-
+/* Burger icon */
 .burger {
   display: none;
-  position: fixed;   /* lagi siyang nasa ibabaw */
-  position: fixed;   /* 🔑 lagi siyang nasa ibabaw */
-  top: 15px;         /* layo mula taas */
-  left: 270px;        /* layo mula kaliwa */
-  z-index: 1100;     /* mas mataas kaysa sidebar */
+  position: fixed;
+  top: 15px;
+  left: 270px;
+  z-index: 1100;
   font-size: 1.8rem;
   color: #000;
   cursor: pointer;
   padding: 10px;
   border-radius: 8px;
 }
-
 
 .burger i {
   transition: transform 0.3s ease;
@@ -199,13 +345,12 @@
   transform: rotate(180deg);
 }
 
-
-/* 📱 Mobile responsive */
+/* Responsive */
 @media screen and (max-width: 768px) {
   .sidebar {
     position: fixed;
     top: 0;
-    left: -250px; /* hide sidebar */
+    left: -250px;
     width: 220px;
     height: 100%;
     z-index: 1000;
@@ -213,10 +358,10 @@
   }
 
   .sidebar.active {
-    left: 0; /* slide in */
+    left: 0;
   }
 
   .burger {
-    display: block; /* show burger on mobile */
+    display: block;
   }
 }
