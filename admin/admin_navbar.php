@@ -83,7 +83,7 @@ $_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
   const adminDropdown = document.getElementById('adminDropdown');
   const dropdownMenu = document.getElementById('dropdownMenu');
   const caret = adminDropdown.querySelector('.caret');
-
+w
   burger.addEventListener('click', () => {
     sidebar.classList.toggle('active');
     burger.classList.toggle('active');
