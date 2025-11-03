@@ -1,6 +1,3 @@
-<?php
-include '../config/config.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,12 +54,8 @@ include '../config/config.php';
   </style>
 </head>
 <body>
-<?php include 'admin_navbar.php'; ?>
 
-<div class="main-content">
-  <div class="header">
-    <h2>Messages</h2>
-  </div>
+  <?php include 'admin_navbar.php'; ?>
 
   <div class="main-content">
     <div class="header">
@@ -181,6 +174,5 @@ include '../config/config.php';
     loadMessages();
   </script>
 
-</script>
 </body>
 </html>
