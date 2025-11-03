@@ -1,11 +1,16 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
+    session_set_cookie_params(['path' => '/']);
     session_start();
 }
-$_SESSION['username'] = $_SESSION['username'] ?? 'admin';
-$_SESSION['email'] = $_SESSION['email'] ?? 'admin@example.com';
-$_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
+
+// ✅ Optional: security check (prevent access if not logged in)
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: index.php");
+    exit;
+}
 ?>
+
 
 <!-- Burger icon -->
 <div class="burger">
@@ -24,7 +29,7 @@ $_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
   <!-- Menu -->
   <ul class="nav-links">
     <li class="nav-item active">
-      <a href="index.php"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+      <a href="admin_dashboard.php"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
       <hr>
     </li>
     <li class="nav-item">
@@ -66,10 +71,10 @@ $_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
       <h2>Admin Profile</h2>
     </div>
       <div class="profile-details">
-        <p><strong>Username:</strong> <?= htmlspecialchars($_SESSION['admin_name'] ?? 'N/A') ?></p>
-        <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['admin_email'] ?? 'N/A') ?></p>
+        <p><strong>Username:</strong> <?= htmlspecialchars($_SESSION['admin_name'] ?? 'N/A'); ?></p>
+        <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['admin_email'] ?? 'N/A'); ?></p>
         <p><strong>Role:</strong> Administrator</p>
-        <p><strong>Last Login:</strong> <?= htmlspecialchars($_SESSION['last_login'] ?? 'N/A') ?></p>
+        <p><strong>Last Login:</strong> <?= htmlspecialchars($_SESSION['last_login'] ?? 'N/A'); ?></p>
       </div>
     <div class="modal-footer">
       <button class="close-modal-btn">Close</button>
@@ -83,7 +88,7 @@ $_SESSION['last_login'] = $_SESSION['last_login'] ?? date("F d, Y");
   const adminDropdown = document.getElementById('adminDropdown');
   const dropdownMenu = document.getElementById('dropdownMenu');
   const caret = adminDropdown.querySelector('.caret');
-w
+
   burger.addEventListener('click', () => {
     sidebar.classList.toggle('active');
     burger.classList.toggle('active');

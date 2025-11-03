@@ -1,10 +1,13 @@
 <?php
+session_set_cookie_params(['path' => '/']); // makes session cookie global
 session_start();
+
 if (!isset($_SESSION['admin_id'])) {
   header("Location: index.php");
   exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
