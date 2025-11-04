@@ -1,83 +1,100 @@
+<?php 
+include 'admin_navbar.php'; 
+require_once '../config/config.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Code Generator</title>
+  <title>QR Code Generator | FireBOT Admin</title>
+
+  <link rel="stylesheet" href="../styles/global_admin.css">
   <link rel="stylesheet" href="../styles/admin_navbar.css">
-  <link rel="stylesheet" href="../global_admin.css">
   <link rel="stylesheet" href="../styles/code.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
-  <?php include 'admin_navbar.php'; ?>
+<div class="main-content">
+  <div class="header">
+    <h2>QR Code Generator</h2>
+    <p>Create and register new users for FireBOT access.</p>
+  </div>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="header">
-      <h2>QR Code Generator</h2>
+  <div class="card">
+    <div class="form-container">
+      <form id="qrForm">
+        <div class="input-group">
+          <i class="fa fa-user"></i>
+          <input type="text" name="fullname" placeholder="Full Name" required>
+        </div>
+        <div class="input-group">
+          <i class="fa fa-envelope"></i>
+          <input type="email" name="email" placeholder="Email Address" required>
+        </div>
+        <div class="input-group">
+          <i class="fa fa-phone"></i>
+          <input type="text" name="contact" placeholder="+63 9XX XXX XXXX" required>
+        </div>
+        <div class="input-group">
+          <i class="fa fa-home"></i>
+          <input type="text" name="address" placeholder="Address" required>
+        </div>
+
+        <button type="submit" class="btn-generate">Create QR Code</button>
+      </form>
     </div>
 
-  <!-- Form -->
-  <div class="form-container">
-    <form id="qrForm">
-      <div class="input-group">
-        <i class="fa fa-user"></i>
-        <input type="text" name="fullname" placeholder="Full Name" required>
-      </div>
-      <div class="input-group">
-        <i class="fa fa-envelope"></i>
-        <input type="email" name="email" placeholder="Email Address" required>
-      </div>
-      <div class="input-group">
-        <i class="fa fa-phone"></i>
-        <input type="text" name="contact" placeholder="Contact No." required>
-      </div>
-      <div class="input-group">
-        <i class="fa fa-home"></i>
-        <input type="text" name="address" placeholder="Address" required>
-      </div>
-
-      <!-- Trigger Button (dapat nasa loob ng form) -->
-      <button id="generateBtn" class="btn-generate">Generate QR Code</button>
-    </form>
-  </div>
-
-
-  <!-- Modal -->
-<div class="modal" id="qrModal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <img src="images/qr.png" alt="QR Code" class="qr-image">
-    <button class="btn-download">Download QR Code</button>
-    <p>Scan this QR code to open the FireBOT App.</p>
+    <div id="qrResult" class="qr-result" style="display:none;">
+      <h3>Generated QR Code</h3>
+      <div id="qrcode"></div>
+      <button id="downloadBtn" class="btn-download">Download QR Code</button>
+    </div>
   </div>
 </div>
-s
 
 <script>
-const modal = document.getElementById("qrModal");
-const btn = document.getElementById("generateBtn");
-const closeBtn = document.querySelector(".close-btn");
-
-btn.addEventListener("click", function(e) {
+document.getElementById('qrForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  modal.classList.add("show");
-});
 
-closeBtn.addEventListener("click", function() {
-  modal.classList.remove("show");
-});
+  const formData = new FormData(this);
 
-window.addEventListener("click", function(e) {
-  if (e.target === modal) {
-    modal.classList.remove("show");
-  }
+  fetch('../controls/generate_qr.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === 'exists') {
+      alert('Email already exists!');
+    } else if (data.status === 'error') {
+      alert('Error: ' + data.message);
+    } else if (data.status === 'success') {
+      const qrContainer = document.getElementById('qrcode');
+      qrContainer.innerHTML = '';
+      document.getElementById('qrResult').style.display = 'block';
+
+      new QRCode(qrContainer, {
+        text: data.qrData,
+        width: 200,
+        height: 200
+      });
+
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.onclick = function() {
+        const qrImg = qrContainer.querySelector('img') || qrContainer.querySelector('canvas');
+        const link = document.createElement('a');
+        link.href = qrImg.src || qrImg.toDataURL();
+        link.download = data.filename || 'user_qr.png';
+        link.click();
+      };
+    }
+  })
+  .catch(err => alert('Network error: ' + err));
 });
 </script>
 
-</body>
-</html>
 </body>
 </html>
