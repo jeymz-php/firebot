@@ -6,7 +6,7 @@
   <title>User Management</title>
   <link rel="stylesheet" href="../styles/global_admin.css" />
   <link rel="stylesheet" href="../styles/admin_navbar.css">
-  <link rel="stylesheet" href="../styles/admin_users.cssw">
+  <link rel="stylesheet" href="../styles/admin_users.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
