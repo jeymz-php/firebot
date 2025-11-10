@@ -1,40 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* Main Card Container */
+/* Remove body scroll ONLY */
+body {
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main Card Container - LOWERED POSITION */
 .card {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  max-width: 1200px;
-  margin: 100px auto;
+  max-width: 1000px;
+  margin: 30px auto; /* LOWERED POSITION */
   justify-content: center;
+  align-items: stretch;
+  margin-top: 70px;
 }
 
-/* Form Container */
-.form-container {
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  width: 450px;
-  border: 1px solid #1D1616;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* QR Result Container */
+/* BOTH CONTAINERS - EXACTLY SAME */
+.form-container,
 .qr-result {
   background: #ffffff;
   padding: 40px;
   border-radius: 12px;
   width: 450px;
+  min-height: 500px;
   border: 1px solid #1D1616;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease; /* Added for smooth hover effect */
+}
+
+/* HOVER EFFECT FOR BOTH CARDS - SIMPLE AND CLEAN */
+.form-container:hover,
+.qr-result:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: #8E1616;
+}
+
+/* Form specific */
+.form-container {
+  justify-content: flex-start;
+}
+
+/* QR Result specific */
+.qr-result {
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .qr-result h3 {
@@ -90,8 +107,9 @@
   transform: translateX(5px);
 }
 
-/* Buttons */
-.btn-generate {
+/* Buttons - ALL SAME */
+.btn-generate,
+.btn-download {
   display: block;
   width: 100%;
   padding: 10px;
@@ -105,28 +123,19 @@
   font-weight: 500;
 }
 
-.btn-generate:hover {
-  background: transparent;
-  color: #8E1616;
-}
-
-.btn-download {
-  background: #8E1616;
-  color: #fff;
-  border: 2px solid #8E1616;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  width: 100%;
-  max-width: 220px;
-  margin-top: 20px;
-}
-
+.btn-generate:hover,
 .btn-download:hover {
   background: transparent;
   color: #8E1616;
+}
+
+/* REMOVED PDF BUTTON STYLES */
+
+/* Download button - SINGLE BUTTON */
+.btn-download {
+  width: 100%;
+  max-width: 220px;
+  margin-top: 20px;
 }
 
 /* QR Code Styling */
@@ -138,6 +147,7 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
 }
 
 /* Profile Modal Styles - USING YOUR EXISTING STYLES */
@@ -300,6 +310,10 @@
 
 /* 📱 Mobile Responsive */
 @media screen and (max-width: 1024px) {
+  body {
+    overflow-y: auto;
+  }
+  
   .card {
     flex-direction: column;
     align-items: center;
@@ -311,6 +325,7 @@
   .qr-result {
     width: 90%;
     max-width: 450px;
+    min-height: auto;
   }
 }
 
@@ -331,19 +346,7 @@
   .btn-generate,
   .btn-download {
     font-size: 0.95rem;
-  }
-
-  .profile-modal-content {
-    padding: 25px;
-    margin: 20px;
-  }
-
-  .profile-header i {
-    font-size: 2.5rem;
-  }
-
-  .profile-header h2 {
-    font-size: 1.3rem;
+    padding: 10px;
   }
 }
 
@@ -361,22 +364,6 @@
   .btn-download {
     max-width: 180px;
     padding: 10px 15px;
-    font-size: 0.9rem;
-  }
-
-  .profile-modal-content {
-    padding: 20px 15px;
-  }
-
-  .profile-header i {
-    font-size: 2rem;
-  }
-
-  .profile-header h2 {
-    font-size: 1.2rem;
-  }
-
-  .profile-details {
     font-size: 0.9rem;
   }
 }
