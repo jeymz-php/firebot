@@ -65,9 +65,7 @@ include '../config/config.php';
         <p>Messages will appear here</p>
       </div>
 
-      <div class="chat-messages" id="chatMessages">
-        <!-- dynamically loaded -->
-      </div>
+      <div class="chat-messages" id="chatMessages"></div>
 
       <div class="chat-input">
         <button class="icon-btn"><i class="fa-solid fa-paperclip"></i></button>
@@ -87,34 +85,44 @@ include '../config/config.php';
 
 <script>
 let currentThread = null;
+let refreshInterval = null;
 
 // Load conversation when user clicks
 document.querySelectorAll('.message-item').forEach(item => {
   item.addEventListener('click', () => {
     currentThread = item.getAttribute('data-id');
+    loadConversation();
 
-    fetch('../controls/get_conversation.php?id=' + currentThread)
-      .then(res => res.json())
-      .then(data => {
-        const chat = document.getElementById('chatMessages');
-        let output = '';
-        data.messages.forEach(msg => {
-          output += `
-            <div class="${msg.sender === 'admin' ? 'admin-msg' : 'user-msg'}">
-              <p>${msg.message}</p>
-              <span>${msg.time}</span>
-            </div>`;
-        });
-
-        document.querySelector('.chat-header').innerHTML = `
-          <h3>${data.thread.name}</h3>
-          <p>${data.thread.email}</p>`;
-
-        chat.innerHTML = output;
-        chat.scrollTop = chat.scrollHeight;
-      });
+    if (refreshInterval) clearInterval(refreshInterval);
+    refreshInterval = setInterval(loadConversation, 3000); // refresh every 3s
   });
 });
+
+function loadConversation() {
+  if (!currentThread) return;
+
+  fetch('../controls/get_conversation.php?id=' + currentThread)
+    .then(res => res.json())
+    .then(data => {
+      const chat = document.getElementById('chatMessages');
+      let output = '';
+      data.messages.forEach(msg => {
+        output += `
+          <div class="${msg.sender === 'Admin' ? 'admin-msg' : 'user-msg'}">
+            <p>${msg.message}</p>
+            <span>${msg.time}</span>
+          </div>`;
+      });
+
+      document.querySelector('.chat-header').innerHTML = `
+        <h3>${data.thread.name}</h3>
+        <p>${data.thread.email}</p>`;
+
+      chat.innerHTML = output;
+      chat.scrollTop = chat.scrollHeight;
+    })
+    .catch(err => console.error('Error loading conversation:', err));
+}
 
 // Send reply
 document.getElementById('sendReply').addEventListener('click', () => {
@@ -124,19 +132,13 @@ document.getElementById('sendReply').addEventListener('click', () => {
   fetch('../controls/send_reply.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'thread_id=' + currentThread + '&message=' + encodeURIComponent(msg)
+    body: 'thread_id=' + currentThread + '&sender=Admin&message=' + encodeURIComponent(msg)
   })
   .then(res => res.json())
   .then(data => {
     if (data.success) {
-      const chat = document.getElementById('chatMessages');
-      chat.innerHTML += `
-        <div class="admin-msg">
-          <p>${msg}</p>
-          <span>Just now</span>
-        </div>`;
       document.getElementById('replyMessage').value = '';
-      chat.scrollTop = chat.scrollHeight;
+      loadConversation(); // instant refresh after send
     }
   });
 });
