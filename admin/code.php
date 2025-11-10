@@ -74,7 +74,7 @@ document.getElementById('qrForm').addEventListener('submit', function(e) {
     } else if (data.status === 'success') {
       const qrContainer = document.getElementById('qrcode');
       qrContainer.innerHTML = '';
-      document.getElementById('qrResult').style.display = 'block';
+      document.getElementById('qrResult').style.display = 'flex';
 
       new QRCode(qrContainer, {
         text: data.qrData,

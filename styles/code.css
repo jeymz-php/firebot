@@ -1,18 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
+/* Remove body scroll ONLY */
+body {
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
 
-/* Form Container (only this is larger) */
-.form-container {
+/* Main Card Container - LOWERED POSITION */
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 30px auto; /* LOWERED POSITION */
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 70px;
+}
+
+/* BOTH CONTAINERS - EXACTLY SAME */
+.form-container,
+.qr-result {
   background: #ffffff;
-  padding: 40px;              /* mas makapal padding */
+  padding: 40px;
   border-radius: 12px;
-  max-width: 900px;           /* mas wide */
-  min-height: 500px;          /* mas mataas */
-  margin: 100px auto;
+  width: 450px;
+  min-height: 500px;
   border: 1px solid #1D1616;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* normal alignment */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease; /* Added for smooth hover effect */
+}
+
+/* HOVER EFFECT FOR BOTH CARDS - SIMPLE AND CLEAN */
+.form-container:hover,
+.qr-result:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: #8E1616;
+}
+
+/* Form specific */
+.form-container {
+  justify-content: flex-start;
+}
+
+/* QR Result specific */
+.qr-result {
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-result h3 {
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 600;
 }
 
 /* Input Group */
@@ -33,7 +78,7 @@
 
 .input-group:focus-within i {
   color: #8E1616;
-  transform: translateY(-50%) scale(1.2); /* zoom lang, di mawawala */
+  transform: translateY(-50%) scale(1.2);
 }
 
 .input-group input {
@@ -48,7 +93,7 @@
 
 .input-group input:focus {
   border: 1px solid #8E1616;
-  box-shadow: 0 0 5px rgba(142, 22, 22, 0.4); /* glow effect */
+  box-shadow: 0 0 5px rgba(142, 22, 22, 0.4);
 }
 
 /* Placeholder */
@@ -59,276 +104,170 @@
 
 .input-group input:focus::placeholder {
   color: #8E1616;
-  transform: translateX(5px); /* slide effect */
+  transform: translateX(5px);
 }
 
-/* Button */
-.btn-generate {
+/* Buttons - ALL SAME */
+.btn-generate,
+.btn-download {
   display: block;
   width: 100%;
   padding: 10px;
   font-size: 1rem;
   background: #8E1616;
   color: #fff;
-  border: 2px solid #8E1616;   /* add border */
+  border: 2px solid #8E1616;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;   /* smooth effect */
-}
-
-/* Hover effect: transparent background */
-.btn-generate:hover {
-  background: transparent;
-  color: #8E1616;
-  border: 2px solid #8E1616;
-}
-
-/* Modal background */
-.modal {
-  position: fixed;
-  z-index: 1000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;                  
-  justify-content: center;
-  align-items: center;
-  
-  opacity: 0;
-  pointer-events: none;  /* para di clickable kapag hidden */
-  transition: opacity 0.3s ease;
-}
-
-/* Kapag naka-show */
-.modal.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Modal box */
-.modal-content {
-  background: #fff;
-  padding: 30px 20px;
-  border-radius: 20px;
-  text-align: center;
-  position: relative;
-  max-width: 380px;
-  width: 90%;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-  font-family: 'Poppins', sans-serif;
-
-  /* Start state */
-  transform: scale(0.7) translateY(-30px);
-  opacity: 0;
-  transition: all 0.35s cubic-bezier(0.25, 1.3, 0.5, 1);
-}
-
-/* Kapag visible na modal */
-.modal.show .modal-content {
-  transform: scale(1) translateY(0);
-  opacity: 1;
-}
-
-/* Close button */
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  background: #fff;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* QR image */
-.qr-image {
-  width: 300px;
-  height: auto;
-  margin: 30px auto 20px auto;
-  display: block;
-
-  transform: scale(0.9);              /* start smaller */
-  opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  cursor: pointer; /* para obvious na interactive */
-}
-/* Normal state */
-.qr-image {
-  width: 300px;
-  height: auto;
-  margin: 30px auto 20px auto;
-  display: block;
-  transform: scale(0.9);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  cursor: pointer;
-}
-
-/* Pag visible na modal */
-.modal.show .qr-image {
-  transform: scale(1);
-  opacity: 1;
-}
-
-/* Keyframes para sa wiggle/talo effect */
-@keyframes wobble {
-  0%   { transform: scale(1.05) rotate(0deg); }
-  25%  { transform: scale(1.05) rotate(3deg); }
-  50%  { transform: scale(1.05) rotate(-3deg); }
-  75%  { transform: scale(1.05) rotate(2deg); }
-  100% { transform: scale(1.05) rotate(0deg); }
-}
-
-/* Hover effect = loop habang naka-hover */
-.qr-image:hover {
-  animation: wobble 0.8s ease-in-out infinite;
-}
-
-.btn-download {
-  background: #8E1616;
-  color: #fff;
-  border: 2px solid #8E1616; /* add border para kita kapag transparent */
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
   transition: all 0.3s ease;
-  width: 100%;
-  max-width: 220px;
-  margin: 10px auto 25px auto;
-  display: block;
+  font-weight: 500;
 }
 
-/* Hover effect: transparent background */
+.btn-generate:hover,
 .btn-download:hover {
   background: transparent;
-  color: #8E1616;   /* text color same as border */
-  border: 2px solid #8E1616;
+  color: #8E1616;
 }
 
+/* REMOVED PDF BUTTON STYLES */
 
-/* Caption text */
-.modal-content p {
-  font-size: 0.9rem;
-  color: #444;
-  margin-top: 10px;
+/* Download button - SINGLE BUTTON */
+.btn-download {
+  width: 100%;
+  max-width: 220px;
+  margin-top: 20px;
 }
 
+/* QR Code Styling */
+#qrcode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+}
 
-/* Initial hidden state for animation */
+/* Remove Modal Styles */
+.modal,
+.modal-content,
+.close-btn,
+.qr-image {
+  display: none;
+}
+
+/* Animations */
 .form-container,
-.input-group,
-.btn-generate {
+.qr-result {
   opacity: 0;
-  transform: translateX(-40px); /* slide from left */
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Keyframes for slide-in */
-@keyframes formSlideIn {
+.form-container {
+  animation-delay: 0.1s;
+}
+
+.qr-result {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input-group {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+.input-group:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.input-group:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.input-group:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.input-group:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+@keyframes slideInLeft {
   to {
     opacity: 1;
     transform: translateX(0);
   }
 }
 
-/* Form container animation */
-.form-container {
-  animation: formSlideIn 0.6s ease forwards;
-  animation-delay: 0s;
-}
-
-/* Input groups staggered */
-.input-group:nth-child(1) {
-  animation: formSlideIn 0.6s ease forwards;
-  animation-delay: 0.2s;
-}
-.input-group:nth-child(2) {
-  animation: formSlideIn 0.6s ease forwards;
-  animation-delay: 0.4s;
-}
-.input-group:nth-child(3) {
-  animation: formSlideIn 0.6s ease forwards;
-  animation-delay: 0.6s;
-}
-.input-group:nth-child(4) {
-  animation: formSlideIn 0.6s ease forwards;
-  animation-delay: 0.8s;
-}
-/* dagdagan pa kung madami kang input fields */
-
-/* Button animation */
 .btn-generate {
-  animation: formSlideIn 0.6s ease forwards;
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
   animation-delay: 1s;
 }
 
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
 
 /* 📱 Mobile Responsive */
+@media screen and (max-width: 1024px) {
+  body {
+    overflow-y: auto;
+  }
+  
+  .card {
+    flex-direction: column;
+    align-items: center;
+    margin: 40px auto;
+    gap: 30px;
+  }
+  
+  .form-container,
+  .qr-result {
+    width: 90%;
+    max-width: 450px;
+    min-height: auto;
+  }
+}
+
 @media screen and (max-width: 768px) {
-  /* Form container */
-  .form-container {
-    max-width: 95%;    /* halos full width */
-    padding: 20px;     /* mas manipis padding */
-    margin: 40px auto; /* mas maliit margin */
-    min-height: auto;  /* wag fixed height */
+  .form-container,
+  .qr-result {
+    padding: 25px;
   }
 
-  /* Input fields */
   .input-group {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
   }
 
   .input-group input {
     font-size: 0.95rem;
-    padding: 10px 10px 10px 38px;
   }
 
-  /* Generate button */
-  .btn-generate {
+  .btn-generate,
+  .btn-download {
     font-size: 0.95rem;
     padding: 10px;
   }
-
-  /* Modal content */
-  .modal-content {
-    max-width: 95%;
-    padding: 20px 15px;
-    border-radius: 12px;
-  }
-
-  /* QR image */
-  .qr-image {
-    width: 220px; /* bawas laki */
-    margin: 20px auto;
-  }
-
-  /* Download button */
-  .btn-download {
-    width: 100%;
-    max-width: 180px;
-    padding: 10px 15px;
-    font-size: 0.9rem;
-  }
-
-  /* Caption text */
-  .modal-content p {
-    font-size: 0.85rem;
-  }
 }
 
-/* 📱 Extra small screens (max 480px) */
 @media screen and (max-width: 480px) {
-  .form-container {
-    padding: 15px;
-    margin: 20px auto;
+  .form-container,
+  .qr-result {
+    padding: 20px;
   }
 
   .input-group input {
@@ -336,17 +275,9 @@
     padding: 8px 8px 8px 34px;
   }
 
-  .qr-image {
-    width: 180px;
-  }
-
   .btn-download {
-    max-width: 160px;
-    padding: 8px 12px;
-    font-size: 0.85rem;
-  }
-
-  .modal-content {
-    padding: 15px 12px;
+    max-width: 180px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
   }
 }
