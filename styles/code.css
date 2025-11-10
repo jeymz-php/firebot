@@ -1,57 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* Remove body scroll ONLY */
-body {
-  overflow: hidden;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-/* Main Card Container - LOWERED POSITION */
+/* Main Card Container */
 .card {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  max-width: 1000px;
-  margin: 30px auto; /* LOWERED POSITION */
+  max-width: 1200px;
+  margin: 100px auto;
   justify-content: center;
-  align-items: stretch;
-  margin-top: 70px;
 }
 
-/* BOTH CONTAINERS - EXACTLY SAME */
-.form-container,
+/* Form Container */
+.form-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  width: 450px;
+  border: 1px solid #1D1616;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* QR Result Container */
 .qr-result {
   background: #ffffff;
   padding: 40px;
   border-radius: 12px;
   width: 450px;
-  min-height: 500px;
   border: 1px solid #1D1616;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease; /* Added for smooth hover effect */
-}
-
-/* HOVER EFFECT FOR BOTH CARDS - SIMPLE AND CLEAN */
-.form-container:hover,
-.qr-result:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  border-color: #8E1616;
-}
-
-/* Form specific */
-.form-container {
-  justify-content: flex-start;
-}
-
-/* QR Result specific */
-.qr-result {
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .qr-result h3 {
@@ -107,9 +90,8 @@ body {
   transform: translateX(5px);
 }
 
-/* Buttons - ALL SAME */
-.btn-generate,
-.btn-download {
+/* Buttons */
+.btn-generate {
   display: block;
   width: 100%;
   padding: 10px;
@@ -123,19 +105,28 @@ body {
   font-weight: 500;
 }
 
-.btn-generate:hover,
-.btn-download:hover {
+.btn-generate:hover {
   background: transparent;
   color: #8E1616;
 }
 
-/* REMOVED PDF BUTTON STYLES */
-
-/* Download button - SINGLE BUTTON */
 .btn-download {
+  background: #8E1616;
+  color: #fff;
+  border: 2px solid #8E1616;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
   width: 100%;
   max-width: 220px;
   margin-top: 20px;
+}
+
+.btn-download:hover {
+  background: transparent;
+  color: #8E1616;
 }
 
 /* QR Code Styling */
@@ -147,15 +138,100 @@ body {
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px 0;
 }
 
-/* Remove Modal Styles */
-.modal,
-.modal-content,
-.close-btn,
-.qr-image {
-  display: none;
+/* Profile Modal Styles - USING YOUR EXISTING STYLES */
+.profile-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.profile-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.profile-modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Header - USING YOUR EXISTING STYLES */
+.profile-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.profile-header i {
+  font-size: 3rem;
+  color: #8E1616;
+}
+
+.profile-header h2 {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Profile Details - USING YOUR EXISTING STYLES */
+.profile-details {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+/* Footer Button - USING YOUR EXISTING STYLES */
+.modal-footer {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.close-modal-btn {
+  background: #8E1616;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.close-modal-btn:hover {
+  background: #661010;
+}
+
+/* Close (X) Button - USING YOUR EXISTING STYLES */
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 1.5rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #000;
 }
 
 /* Animations */
@@ -224,10 +300,6 @@ body {
 
 /* 📱 Mobile Responsive */
 @media screen and (max-width: 1024px) {
-  body {
-    overflow-y: auto;
-  }
-  
   .card {
     flex-direction: column;
     align-items: center;
@@ -239,7 +311,6 @@ body {
   .qr-result {
     width: 90%;
     max-width: 450px;
-    min-height: auto;
   }
 }
 
@@ -260,7 +331,19 @@ body {
   .btn-generate,
   .btn-download {
     font-size: 0.95rem;
-    padding: 10px;
+  }
+
+  .profile-modal-content {
+    padding: 25px;
+    margin: 20px;
+  }
+
+  .profile-header i {
+    font-size: 2.5rem;
+  }
+
+  .profile-header h2 {
+    font-size: 1.3rem;
   }
 }
 
@@ -278,6 +361,22 @@ body {
   .btn-download {
     max-width: 180px;
     padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  .profile-modal-content {
+    padding: 20px 15px;
+  }
+
+  .profile-header i {
+    font-size: 2rem;
+  }
+
+  .profile-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .profile-details {
     font-size: 0.9rem;
   }
 }
