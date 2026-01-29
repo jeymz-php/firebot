@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* admin.css */
+body {
+  display: flex;              /* 🔑 keeps sidebar + main-content side by side */
+  align-items: flex-start;
+  background: #f9f9f9;
+  color: #333;  
+  overflow: hidden; /* 🚫 disables scrolling */
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.header {
+  background: #8E1616;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 200px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* 👈 added */
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.card-icon {
+  font-size: 2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* kapag ni-hover yung buong card */
+.card:hover .card-icon {
+  transform: scale(1.2) rotate(3deg); /* lumaki + slight tilt */
+  color: #000; /* pwede mo palitan depende sa theme */
+}
+
+
+.card-info p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.card-info h3 {
+  font-size: 1.5rem;
+  margin-top: 5px;
+}
+
+/* Colors for icons */
+.card:nth-child(1) .card-icon { color: #1976d2; }
+.card:nth-child(2) .card-icon { color: #388e3c; }
+.card:nth-child(3) .card-icon { color: #d32f2f; }
+.card:nth-child(4) .card-icon { color: #f57c00; }
+
+/* Initial hidden state */
+.header,
+.cards .card {
+  opacity: 0;
+  transform: translateX(-40px); /* mula sa left */
+}
+
+/* Keyframes for fade + slide in from side */
+@keyframes fadeSide {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Header animation */
+.header {
+  animation: fadeSide 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* Cards animation (staggered) */
+.cards .card:nth-child(1) {
+  animation: fadeSide 0.6s ease forwards;
+  animation-delay: 0.4s;
+}
+.cards .card:nth-child(2) {
+  animation: fadeSide 0.6s ease forwards;
+  animation-delay: 0.6s;
+}
+.cards .card:nth-child(3) {
+  animation: fadeSide 0.6s ease forwards;
+  animation-delay: 0.8s;
+}
+.cards .card:nth-child(4) {
+  animation: fadeSide 0.6s ease forwards;
+  animation-delay: 1s;
+}
+/* dagdagan kung may mas maraming card */
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  body {
+    flex-direction: column; /* sidebar + main content stacked */
+    overflow: auto; /* allow scrolling on smaller screens */
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 1.2rem;
+    padding: 12px 15px;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .card-info p {
+    font-size: 0.85rem;
+  }
+
+  .card-icon {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+
+  .cards {
+    gap: 10px;
+  }
+
+  .card {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card-info p {
+    font-size: 0.8rem;
+  }
+
+  .card-icon {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    * {
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+    }
+
+    /* Container holding list + chat */
+    .inquiries-container {
+    display: flex;
+    height: calc(100vh - 120px); /* adjust based on your header */
+    gap: 20px;
+    }
+
+    /* Messages Panel */
+    .messages-panel {
+    width: 30%;
+    background: #fff;
+    border: 1.5px solid #1D1616;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    }
+
+    .messages-header {
+    padding: 12px;
+    border-bottom: 1.5px solid #1D1616;
+    background: #fdfdfd;
+    }
+
+    /* Wrapper for search bar + icon */
+    .search-wrapper {
+    position: relative;
+    width: 100%;
+    }
+
+    .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #666666;
+    pointer-events: none;
+    }
+
+    .search-bar {
+    width: 100%;
+    padding: 8px 10px 8px 35px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    transition: 0.3s ease;
+    }
+
+    /* Chat Panel */
+    .chat-panel {
+    flex: 1;
+    background: #fff;
+    border: 1.5px solid #1D1616;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    }
+
+    .chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #fafafa;
+    }
+
+/* Chat Input Container */
+.chat-input {
+  padding: 10px;
+  border-top: 1.5px solid #1D1616;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+}
+
+/* Input Wrapper */
+.input-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Chat Icon (inside left of input) */
+.chat-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #666666;
+  pointer-events: none;
+}
+
+/* Text Input */
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 40px 10px 35px; /* space left for chat icon, right for emoji */
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+  border-color: #8E1616;
+  box-shadow: 0 0 6px rgba(142,22,22,0.3);
+}
+
+/* Emoji Button inside input (right side) */
+.emoji-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #555;
+  cursor: pointer;
+}
+
+/* Left + right small buttons */
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.icon-btn:hover {
+  color: #8E1616;
+}
+
+
+/* Send Button */
+.send-btn {
+  background: #8E1616;
+  color: #fff;
+  border: 2px solid #8E1616;   /* may border na para visible pag hover */
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Hover: transparent */
+.send-btn:hover {
+  background: transparent;   /* transparent background */
+  color: #8E1616;            /* icon/text maroon */
+  transform: scale(1.1);     /* zoom in effect */
+}
+
+
+
+    /* Focus state (shared with search-bar) */
+    .search-bar:focus,
+    .input-wrapper input:focus {
+    border-color: #1D1616;
+    box-shadow: 0 0 6px rgba(142,22,22,0.3);
+    outline: none;
+    }
+
+    /* Shared Focus Style for Search and Chat Input */
+    .search-bar:focus,
+    .chat-input input:focus {
+    border-color: #8E1616 !important;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3) !important;
+    outline: none !important;
+    }
+
+
+/* Default color */
+.search-icon,
+.chat-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #666666;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+/* Change color when input is focused */
+.search-wrapper:focus-within .search-icon {
+  color: #8E1616; /* 🔴 red on focus */
+}
+
+.input-wrapper:focus-within .chat-icon {
+  color: #8E1616; /* 🔴 red on focus */
+}
+
+
+    /* Initial hidden state */
+    .messages-panel,
+    .chat-panel,
+    .messages-header,
+    .search-wrapper,
+    .chat-messages,
+    .chat-input {
+    opacity: 0;
+    transform: translateX(-40px); /* slide from left */
+    }
+
+    /* Reuse slideIn keyframes ng sidebar */
+    @keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
+
+    /* Messages Panel */
+    .messages-panel {
+    animation: slideIn 0.6s ease forwards;
+    animation-delay: 0s;
+    }
+
+    /* Messages Header */
+    .messages-header {
+    animation: slideIn 0.6s ease forwards;
+    animation-delay: 0.2s;
+    }
+
+    /* Search wrapper */
+    .search-wrapper {
+    animation: slideIn 0.6s ease forwards;
+    animation-delay: 0.4s;
+    }
+
+    /* Chat Panel */
+    .chat-panel {
+    animation: slideIn 0.6s ease forwards;
+    animation-delay: 0.6s;
+    }
+
+    /* Chat messages */
+    .chat-messages {
+    animation: slideIn 0.6s ease forwards;
+    animation-delay: 0.8s;
+    }
+
+    /* Chat input */
+    .chat-input {
+    animation: slideIn 0.6s ease forwards;
+    animation-delay: 1s;
+    }
+
+
+    /* 📱 Mobile Responsive */
+@media screen and (max-width: 768px) {
+  /* Container - gawing column instead of row */
+  .inquiries-container {
+    flex-direction: column;
+    gap: 15px;
+    height: auto; /* wag fixed vh para kasya sa phone */
+  }
+
+  /* Messages Panel - full width */
+  .messages-panel {
+    width: 100%;
+    height: 300px; /* limit height para scrollable */
+  }
+
+  /* Chat Panel - full width */
+  .chat-panel {
+    width: 100%;
+    flex: none;
+    height: calc(100vh - 380px); /* adjust based sa taas ng messages */
+  }
+
+  /* Messages list scrollable */
+  .messages-panel {
+    overflow-y: auto;
+  }
+
+  /* Chat messages scrollable */
+  .chat-messages {
+    padding: 10px;
+    font-size: 0.9rem; /* smaller font para magkasya */
+  }
+
+  /* Chat input */
+  .chat-input {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  /* Input field */
+  .input-wrapper input {
+    font-size: 13px;
+    padding: 8px 35px;
+  }
+
+  /* Buttons */
+  .send-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .icon-btn,
+  .emoji-btn {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+/* Navbar Styles */
+.navbar {
+    position: fixed; /* gawin fixed */
+    top: 0;
+    left: 0;
+    right: 0;
+     width: 100%;
+    background-color: #000;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+}
+
+/* Logo text + image combination */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    position: relative; /* kailangan for ::after underline */
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #8E1616; 
+}
+
+.logo:hover::after {
+    width: 100%;
+}
+
+.logo-t {
+    margin-left: -8px; /* konting space after image */
+}
+
+.logo-o {
+    height: 1.5em;
+    width: auto;
+    margin-left: -5px;
+    vertical-align: middle;
+    transition: filter 0.3s ease; /* smooth transition */
+}
+
+.logo:hover .logo-o {
+    filter: brightness(0) invert(1); /* turns it white */
+}
+
+/* Nav links */
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-item {
+    margin-left: 25px;
+}
+
+/* Nav links */
+.nav-link {
+    position: relative;   /* para ma-control yung pseudo-element */
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 0;  /* para may space for underline */
+    margin-right: 20px;
+}
+
+/* Hover underline animation */
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #8E1616;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Active link underline */
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Hamburger menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: #000;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 1.5rem 0;
+    }
+}
