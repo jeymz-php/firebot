@@ -106,6 +106,32 @@ function loadRobots() {
 loadRobots();
 setInterval(loadRobots, 10000);
 
+function loadFireStations() {
+    fetch('../api/get_fire_stations.php')
+        .then(response => response.json())
+        .then(stations => {
+            stations.forEach(station => {
+                // Create a Red Building Icon for Fire Stations
+                const stationIcon = L.divIcon({
+                    className: 'station-icon',
+                    html: `<i class="fa-solid fa-house-fire" style="color:#d9534f;font-size:22px;text-shadow: 0 0 3px #fff;"></i>`,
+                    iconSize: [25, 25],
+                });
+
+                const stationMarker = L.marker([station.latitude, station.longitude], { icon: stationIcon }).addTo(map);
+                
+                stationMarker.bindPopup(`
+                    <div style="text-align:center;">
+                        <b style="color:#d9534f;"><i class="fa-solid fa-fire-extinguisher"></i> ${station.station_name}</b><br>
+                        <small>${station.address}</small><br>
+                        <b>Contact:</b> ${station.contact_number}
+                    </div>
+                `);
+            });
+        })
+        .catch(error => console.error('Error loading fire stations:', error));
+}
+
 
 // FOR ROBOT LOGS
 function loadRobotLogs() {
@@ -142,5 +168,8 @@ function loadRobotLogs() {
     });
 }
 
-loadRobotLogs();
-setInterval(loadRobotLogs, 10000);
+loadRobots();
+setInterval(loadRobots, 10000);
+
+// ADD THIS LINE HERE TO TRIGGER THE SEARCH
+loadFireStations();
