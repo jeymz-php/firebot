@@ -351,9 +351,9 @@
                             <span class="logoW-t">T</span>
                         </h2>
                         <div class="contact-info">
-                            <div><i class="fas fa-phone-alt"></i><span>+1012 3456 789</span></div>
-                            <div><i class="fas fa-envelope"></i><span>demo@gmail.com</span></div>
-                            <div><i class="fas fa-map-marker-alt" style="margin-top:3px;"></i><span>132 Batumbakal Street, Diyan lang sa Tabi-Tabi</span></div>
+                            <div><i class="fas fa-phone-alt"></i><span>+63-9764334228</span></div>
+                            <div><i class="fas fa-envelope"></i><span>firebot_2025@gmail.com</span></div>
+                            <div><i class="fas fa-map-marker-alt" style="margin-top:3px;"></i><span>93 J.Ramos St. Caloocan City</span></div>
                         </div>
                     </div>
                     <div class="social-links">
@@ -440,7 +440,7 @@
         <hr class="footer-divider">
 
         <div class="footer-social">
-            <a href="https://www.facebook.com/photo/?fbid=9040457186004104&set=a.125169130866332&__tn__=%3C"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class=" fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fas fa-envelope"></i></a>
         </div>
