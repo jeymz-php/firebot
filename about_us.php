@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
+    <link rel="icon" href="images/favicon.png" type="images/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles/about_us.css">
     <link rel="stylesheet" href="styles/navbar.css">
@@ -235,13 +236,13 @@
     <!-- Footer  -->
 
 <footer id="contact_us" class="footer">
-  <div class="footer-nav">
-    <a href="#">Home</a>
-    <a href="#about">About Us</a>
-    <img src="images/logo1.png" alt="Logo" class="footer-logo">
-    <a href="#">Guide</a>
-    <a href="#">Contact Us</a>
-  </div>
+      <div class="footer-nav">
+        <a href="index.php">Home</a>
+        <a href="about_us.php">About Us</a>
+        <img src="images/logo1.png" alt="Logo" class="footer-logo">
+        <a href="guide_page.php">Guide</a>
+        <a href="index.php#contact-us">Contact Us</a>
+    </div>
 
   <hr class="footer-divider">
 

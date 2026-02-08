@@ -20,6 +20,7 @@ html, body {
     padding: 0;
     width: 100%;
     overflow-x: hidden;
+    
 }
 
 main {
@@ -332,7 +333,7 @@ body {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-top: 40px;
     justify-items: center;

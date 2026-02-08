@@ -7,8 +7,8 @@
     <title>Landing Page - FIREBOT</title>
     <link rel="icon" href="images/favicon.png" type="images/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/index.css">
 
 </head>
 
@@ -71,7 +71,7 @@
                 </p>
                 <div class="buttons">
                     <a href="guide_page.php" class="btn-primary">Get Started</a>
-                    <a href="index.php#contact-us" class="btn-secondary">Contact Us</a>
+                    <a class="btn-secondary">Download Now</a>
                 </div>
             </div>
         </div>
@@ -109,7 +109,6 @@
 
     <!-- key features -->
     <section class="features-section">
-        <div class="container">
             <h2 class="section-title">Key Features</h2>
             <p class="section-subtitle">
                 FireBOT is built with advanced technology to ensure reliable, efficient, and automated fire safety. Each feature is designed to detect, respond, and protect with maximum effectiveness, giving you peace of mind in any environment.
@@ -135,17 +134,6 @@
                         Notifies you instantly during fire emergencies for quick awareness.
                     </p>
                 </div>
-
-                <div class="feature-card">
-                    <div class="icon">
-                        <img src="images/camera.png" alt="Camera Monitoring">
-                    </div>
-                    <h3>Camera Monitoring</h3>
-                    <p>
-                        Integrated camera module provides live visual feedback, assisting in fire source identification and situational awareness.
-                    </p>
-                </div>
-
                 <div class="feature-card">
                     <div class="icon">
                         <img src="images/emergency.png" alt="Emergency Alert System">
@@ -156,7 +144,6 @@
                     </p>
                 </div>
             </div>
-        </div>
     </section>
 
     <script>
@@ -316,7 +303,7 @@
                 <div class="b-icon">
                     <img src="images/megaphone.png" alt="Megaphone Icon">
                 </div>
-                <h3>Smart Alerts, Zero Delay</h3>
+                <h3>Smart Alerts</h3>
                 <p>
                     Even when you’re away, FireBOT keeps you protected by sending automatic alerts to emergency responders for fast backup.
                 </p>
@@ -397,10 +384,8 @@
                     <div class="span-two">
                         <label class="select">Select Subject?</label>
                         <div class="subject-options">
-                            <label><input type="radio" name="subject" value="general1" checked> <span>General Inquiry</span></label>
-                            <label><input type="radio" name="subject" value="general2"> <span>General Inquiry</span></label>
-                            <label><input type="radio" name="subject" value="general3"> <span>General Inquiry</span></label>
-                            <label><input type="radio" name="subject" value="general4"> <span>General Inquiry</span></label>
+                            <label><input type="radio" name="subject" value="general1" checked> <span>For Inquiry</span></label>
+                            <label><input type="radio" name="subject" value="general2"> <span>For Other Questions</span></label>
                         </div>
                     </div>
 
@@ -443,14 +428,14 @@
 
 
     <!-- footer -->
-    <footer id="contact_us" class="footer">
-        <div class="footer-nav">
-            <a href="#">Home</a>
-            <a href="#about">About Us</a>
-            <img src="images/logo1.png" alt="Logo" class="footer-logo">
-            <a href="#">Guide</a>
-            <a href="#">Contact Us</a>
-        </div>
+   <footer id="contact_us" class="footer">
+    <div class="footer-nav">
+        <a href="index.php">Home</a>
+        <a href="about_us.php">About Us</a>
+        <img src="images/logo1.png" alt="Logo" class="footer-logo">
+        <a href="guide_page.php">Guide</a>
+        <a href="index.php#contact-us">Contact Us</a>
+    </div>
 
         <hr class="footer-divider">
 
