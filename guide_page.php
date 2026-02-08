@@ -236,7 +236,7 @@
         <img src="images/logo1.png" alt="Logo" class="footer-logo">
         <a href="guide_page.php">Guide</a>
         <a href="index.php#contact-us">Contact Us</a>
-    </div>
+    </div>  
   <hr class="footer-divider">
 
   <div class="footer-social">

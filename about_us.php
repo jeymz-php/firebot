@@ -149,20 +149,20 @@
 
    <!-- Our Partners Section -->
 <section id="partners" class="partners-section">
-  <h2>Our Partners</h2>
+  <h2>Development Tools</h2>
   <div class="partners-slider">
     <div class="partners-track">
       <div class="partner-item">
-        <div class="partner-logo"><img src="images/00.jpg" alt="Company 1"></div>
-        Company Name  
+        <div class="partner-logo"><img src="images/androidstudio.png" alt="Company 1"></div>
+        Android Studio  
       </div>
       <div class="partner-item">
-        <div class="partner-logo"><img src="images/00.jpg" alt="Company 2"></div>
-        Company Name  
+        <div class="partner-logo"><img src="images/vsc.png" alt="Company 2"></div>
+        Visual Studio Code 
       </div>
       <div class="partner-item">
-        <div class="partner-logo"><img src="images/00.jpg" alt="Company 3"></div>
-        Company Name  
+        <div class="partner-logo"><img src="images/arduino.png" alt="Company 3"></div>
+        Arduino IDE  
       </div>
     </div>
   </div>
@@ -179,56 +179,56 @@
         <img src="images/beans.png" alt="Team Member">
       </div>
       <h3>Vince Iverson Baena</h3>
-      <p>Developer</p>
+      <p>Hardware, Back-End Programmer</p>
     </div>
     <div class="team-card">
       <div class="team-img">
         <img src="images/peyt.png" alt="Team Member">
       </div>
       <h3>Faith Keisha Caballero</h3>
-      <p>Developer</p>
+      <p>Database Administrator</p>
     </div>
     <div class="team-card">
       <div class="team-img">
         <img src="images/wena.png" alt="Team Member">
       </div>
       <h3>Arwena Competente</h3>
-      <p>Developer</p>
+      <p>Front-End Developer</p>
     </div>
     <div class="team-card">
       <div class="team-img">
         <img src="images/llorca.png" alt="Team Member">
       </div>
       <h3>Bernadeth Llorca</h3>
-      <p>Developer</p>
+      <p>Front-End Developer</p>
     </div>
     <div class="team-card">
       <div class="team-img">
         <img src="images/greg.png" alt="Team Member">
       </div>
       <h3>James Ryan Gregorio</h3>
-      <p>Developer</p>
+      <p>Full Stack Developer</p>
     </div>
     <div class="team-card">
       <div class="team-img">
         <img src="images/punla.png" alt="Team Member">
       </div>
       <h3>Joyce Anne Punla</h3>
-      <p>Developer</p>
+      <p>Quality Assurance</p>
     </div>
     <div class="team-card">
       <div class="team-img">
         <img src="images/louis.png" alt="Team Member">
       </div>
       <h3>Mark Louis Santiago</h3>
-      <p>Developer</p>
+      <p>Project Manager</p>
     </div>
     <div class="team-card">
       <div class="team-img">
         <img src="images/ureta.png" alt="Team Member">
       </div>
       <h3>Jan Ermaine Ureta</h3>
-      <p>Developer</p>
+      <p>Front-End Developer</p>
     </div>
   </div>
 </section>
