@@ -29,3 +29,5 @@ Password: FireBOT@2025
 
 - Flame Sensor API added for detecting fire, seeing in the Mobile App
 - code.php modified, including the generating QR code, scanning and verifying QR code
+
+- APK of Mobile App added to the website (NOTE: This are manually added, not automatic)

@@ -71,7 +71,7 @@
                 </p>
                 <div class="buttons">
                     <a href="guide_page.php" class="btn-primary">Get Started</a>
-                    <a class="btn-secondary">Download Now</a>
+                    <a href="FireBOT Mobile App.apk" class="btn-secondary" download="FireBOT_Mobile_App.apk">Download Now</a>
                 </div>
             </div>
         </div>
