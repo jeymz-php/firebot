@@ -4,3 +4,10 @@ mga naging changes sa system as of:
 
 - Admin Dashboard modified, added nearest fire stations inside the Caloocan and outside the Caloocan (CAMANAVA, Valenzuela, Quezon City, etc.)
 - QR Code generateor fixed UI issue (past issue since November 2025, ngayon lang na-update)
+
+2-17-26
+
+- GPS Location of Robot added
+- MAP Legend added
+- Lists of Barangay added
+- 

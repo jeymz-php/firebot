@@ -346,3 +346,46 @@ body {
     font-size: 1.5rem;
   }
 }
+
+/* Style the Leaflet Control Box as a Legend */
+.leaflet-control-layers {
+    background: #ffffff !important;
+    border: 2px solid #A40000 !important; /* FireBOT Red Border */
+    border-radius: 8px !important;
+    padding: 10px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Header for the legend (Optional: add via JS or CSS after-element) */
+.leaflet-control-layers:before {
+    content: "MAP LEGEND";
+    display: block;
+    font-weight: bold;
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* Individual Legend Items */
+.legend-item {
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.legend-item i {
+    width: 20px;
+    text-align: center;
+}
+
+/* Make checkboxes look cleaner */
+.leaflet-control-layers-selector {
+    margin-right: 10px !important;
+    cursor: pointer;
+}
