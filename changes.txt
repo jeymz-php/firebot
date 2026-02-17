@@ -1,5 +1,9 @@
 mga naging changes sa system as of:
 
+Admin Account:
+Email: ucc.firebot.2025@gmail.com
+Password: FireBOT@2025
+
 2-7-26
 
 - Admin Dashboard modified, added nearest fire stations inside the Caloocan and outside the Caloocan (CAMANAVA, Valenzuela, Quezon City, etc.)
